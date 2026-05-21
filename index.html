@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cavient — The all-in-one healthcare practice management platform. Streamline EHR, Telehealth, and Billing for mental health, primary care, and specialty practices." />
+  <meta name="keywords" content="healthcare practice management, EHR, telehealth, mental health software, billing, electronic health records" />
+  <title>Cavient — Health Practice Management: Delivered</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6baa'/><path d='M8 16 C8 11.6 11.6 8 16 8 S24 11.6 24 16 S20.4 24 16 24' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='16' cy='16' r='3' fill='%2300b0c8'/></svg>" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" /></head>
+
+<body>
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAVIGATION
+     ══════════════════════════════════════════════════════════ -->
+<nav class="nav nav-transparent" id="mainNav" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Cavient Home">
+        <img src="https://i.ibb.co.com/PZtbPWqY/Cavient.png" alt="Cavient" class="nav-logo-img" />
+      </a>
+
+      <!-- Menu -->
+      <ul class="nav-menu" role="list">
+
+        <!-- Platform dropdown -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="practice-management.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+              </span>
+              Practice Management
+            </a>
+            <a href="telehealth.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/><path d="M12 12v-2M12 16v2"/></svg>
+              </span>
+              Telehealth
+            </a>
+            <a href="ehr.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+              </span>
+              Electronic Health Records
+            </a>
+            <a href="billing.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+              </span>
+              Billing & Revenue
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="#specialties" class="nav-link">Specialties</a></li>
+        <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="blog.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </span>
+              Blog &amp; Articles
+            </a>
+            <a href="help.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              </span>
+              Help Center
+            </a>
+            <a href="customer-stories.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              Customer Stories
+            </a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login" target="_blank" rel="noopener">Log In</a>
+        <button><a href="register.html" target="_blank" rel="noopener" class="btn btn-accent btn-lg magnetic">Get Started Free</a></button>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-mesh floating-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-badge" role="status">
+          <span class="dot" aria-hidden="true"></span>
+          HIPAA-Compliant &nbsp;·&nbsp; Trusted by Healthcare Providers
+        </div>
+
+
+        <h1 style="font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;color:white;margin-bottom:var(--space-5);">Healthcare Practice <span style="color:var(--c-accent);"><br>Management,</span><br>
+          Delivered.</h1>
+
+        <!-- <h1 class="hero-title text-reveal" id="hero-heading">
+          <span>Healthcare Practice</span><br>
+          Management,<br>
+          Delivered.
+        </h1> -->
+
+        <p class="hero-subtitle">
+          The all-in-one platform for mental health, primary care, and specialty practices.
+          Manage patients, run telehealth visits, streamline billing, and maintain complete
+          electronic health records — all from one secure dashboard.
+        </p>
+
+        <div class="hero-cta">
+          <a href="register.html" class="btn btn-accent btn-lg magnetic" target="_blank" rel="noopener">
+            Start Free Trial
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button onclick="openDemoModal()" class="btn btn-outline-white btn-lg" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="currentColor"/></svg>
+            Watch Demo
+          </button>
+        </div>
+
+        <!-- Trust stats -->
+        <div class="hero-trust" aria-label="Platform statistics">
+          <div class="hero-trust-item">
+            <span class="hero-trust-value">5K+</span>
+            <span class="hero-trust-label">Providers</span>
+          </div>
+          <div class="hero-trust-item">
+            <span class="hero-trust-value">98%</span>
+            <span class="hero-trust-label">Uptime SLA</span>
+          </div>
+          <div class="hero-trust-item">
+            <span class="hero-trust-value">3M+</span>
+            <span class="hero-trust-label">Patient Records</span>
+          </div>
+          <div class="hero-trust-item">
+            <span class="hero-trust-value">50+</span>
+            <span class="hero-trust-label">Specialties</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Visual -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-dashboard">
+          <div class="hero-dashboard-bar">
+            <div class="dash-dots">
+              <span class="dash-dot dash-dot-r"></span>
+              <span class="dash-dot dash-dot-y"></span>
+              <span class="dash-dot dash-dot-g"></span>
+            </div>
+            <span class="dash-title">Cavient Practice Dashboard</span>
+          </div>
+          <div class="hero-dashboard-body">
+            <!-- Stats -->
+            <div class="dash-stats">
+              <div class="dash-stat">
+                <div class="dash-stat-label">Appointments Today</div>
+                <div class="dash-stat-value">24</div>
+                <div class="dash-stat-change">↑ 3 from yesterday</div>
+              </div>
+              <div class="dash-stat">
+                <div class="dash-stat-label">Revenue MTD</div>
+                <div class="dash-stat-value">$48K</div>
+                <div class="dash-stat-change">↑ 12% vs last month</div>
+              </div>
+              <div class="dash-stat">
+                <div class="dash-stat-label">Active Patients</div>
+                <div class="dash-stat-value">312</div>
+                <div class="dash-stat-change">↑ 8 new this week</div>
+              </div>
+            </div>
+            <!-- Chart -->
+            <div class="dash-chart">
+              <div class="dash-chart-label">Weekly Appointments</div>
+              <svg viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="barGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#1a6baa" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#00b0c8" stop-opacity="0.5"/>
+                  </linearGradient>
+                  <linearGradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0%" stop-color="#1a6baa"/>
+                    <stop offset="100%" stop-color="#00b0c8"/>
+                  </linearGradient>
+                </defs>
+                <!-- Bars -->
+                <rect x="10"  y="35" width="28" height="22" rx="3" fill="url(#barGrad)" opacity="0.7"/>
+                <rect x="52"  y="28" width="28" height="29" rx="3" fill="url(#barGrad)" opacity="0.7"/>
+                <rect x="94"  y="18" width="28" height="39" rx="3" fill="url(#barGrad)" opacity="0.7"/>
+                <rect x="136" y="22" width="28" height="35" rx="3" fill="url(#barGrad)" opacity="0.7"/>
+                <rect x="178" y="15" width="28" height="42" rx="3" fill="url(#barGrad)"/>
+                <rect x="220" y="20" width="28" height="37" rx="3" fill="url(#barGrad)" opacity="0.7"/>
+                <rect x="262" y="12" width="28" height="45" rx="3" fill="url(#barGrad)"/>
+                <!-- Labels -->
+                <text x="24"  y="58" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="sans-serif">Mon</text>
+                <text x="66"  y="58" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="sans-serif">Tue</text>
+                <text x="108" y="58" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="sans-serif">Wed</text>
+                <text x="150" y="58" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="sans-serif">Thu</text>
+                <text x="192" y="58" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="7" font-weight="bold" font-family="sans-serif">Fri</text>
+                <text x="234" y="58" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="sans-serif">Sat</text>
+                <text x="276" y="58" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="7" font-weight="bold" font-family="sans-serif">Sun</text>
+              </svg>
+            </div>
+            <!-- Patients -->
+            <div class="dash-patients">
+              <div class="dash-patient-row">
+                <div class="dash-avatar" style="background:linear-gradient(135deg,#1a6baa,#00b0c8);" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+                <div class="dash-patient-info">
+                  <div class="dash-patient-name">Sarah M.</div>
+                  <div class="dash-patient-meta">10:00 AM · Dr. Williams</div>
+                </div>
+                <span class="dash-status status-confirmed">Confirmed</span>
+              </div>
+              <div class="dash-patient-row">
+                <div class="dash-avatar" style="background:linear-gradient(135deg,#2dba6c,#1a6baa);" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+                <div class="dash-patient-info">
+                  <div class="dash-patient-name">James T.</div>
+                  <div class="dash-patient-meta">11:30 AM · Dr. Patel</div>
+                </div>
+                <span class="dash-status status-telehealth">Telehealth</span>
+              </div>
+              <div class="dash-patient-row">
+                <div class="dash-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444);" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+                <div class="dash-patient-info">
+                  <div class="dash-patient-name">Lisa K.</div>
+                  <div class="dash-patient-meta">2:00 PM · Dr. Johnson</div>
+                </div>
+                <span class="dash-status status-pending">Pending</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating cards -->
+        <div class="hero-float-card hero-float-card-1" aria-hidden="true">
+          <div class="float-card-icon" style="background:#e8f8ef;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="float-card-value">HIPAA</div>
+          <div class="float-card-label">Fully Compliant &amp; Secure</div>
+        </div>
+
+        <div class="hero-float-card hero-float-card-2" aria-hidden="true">
+          <div class="float-card-icon" style="background:#e0f7fb;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.71 10.5a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.82 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/></svg>
+          </div>
+          <div class="float-card-value">Live Now</div>
+          <div class="float-card-label">Telehealth Session</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TRUST BAR
+     ══════════════════════════════════════════════════════════ -->
+<div class="trust-bar" aria-label="Trusted by healthcare organizations">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <span class="trust-bar-label">Trusted By</span>
+      <div class="trust-bar-divider" aria-hidden="true"></div>
+      <div class="trust-logos" aria-label="Partner logos">
+        <span class="trust-logo-item">MindCare</span>
+        <span class="trust-logo-item">PrimeMD</span>
+        <span class="trust-logo-item">WellPath</span>
+        <span class="trust-logo-item">NovaClinics</span>
+        <span class="trust-logo-item">TherapyOne</span>
+        <span class="trust-logo-item">HealthFirst</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CORE FEATURES
+     ══════════════════════════════════════════════════════════ -->
+<section class="section features-bg" id="features" aria-labelledby="features-heading">
+  <div class="container">
+    <div class="section-header center animate-on-scroll">
+      <div class="section-label fade-up" aria-hidden="true">Platform Features</div>
+      <h2 class="section-title fade-up" id="features-heading">
+        Everything Your Practice Needs,<br>In One Platform
+      </h2>
+      <p class="section-subtitle fade-up">
+        From scheduling your first appointment to filing complex insurance claims —
+        Cavient handles every aspect of running a modern healthcare practice.
+      </p>
+    </div>
+
+    <div class="features-grid">
+
+      <!-- Practice Management -->
+      <article class="feature-card blur-reveal animate-on-scroll animate-delay-1">
+        <div class="feature-icon" style="background:#e8f3fb;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+            <path d="M8 14h2M8 18h2M14 14h2M14 18h2"/>
+          </svg>
+        </div>
+        <h3>Practice Management</h3>
+        <p>Streamline your entire practice operations — scheduling, patient intake, staff management, and reporting all unified in a single, intuitive workspace.</p>
+        <ul class="feature-list" aria-label="Practice management features">
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Smart appointment scheduling
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Patient portal &amp; online intake
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Automated reminders &amp; follow-ups
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Multi-provider &amp; multi-location
+          </li>
+        </ul>
+        <a href="practice-management.html" class="feature-link" aria-label="Learn more about Practice Management">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Telehealth -->
+      <article class="feature-card blur-reveal animate-on-scroll animate-delay-2">
+        <div class="feature-icon" style="background:#e0f7fb;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <line x1="12" y1="12" x2="12.01" y2="12"/>
+          </svg>
+        </div>
+        <h3>Telehealth</h3>
+        <p>Deliver high-quality virtual care with our integrated, HIPAA-compliant video platform. No downloads required — patients join with a single click from any device.</p>
+        <ul class="feature-list" aria-label="Telehealth features">
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            HD video &amp; audio sessions
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Integrated session notes
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Group therapy sessions
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Screen sharing &amp; whiteboard
+          </li>
+        </ul>
+        <a href="telehealth.html" class="feature-link" aria-label="Learn more about Telehealth">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- EHR -->
+      <article class="feature-card blur-reveal animate-on-scroll animate-delay-3">
+        <div class="feature-icon" style="background:#e8f8ef;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/>
+            <path d="M9 9h6M9 13h6M9 17h4"/>
+          </svg>
+        </div>
+        <h3>Electronic Health Records</h3>
+        <p>Comprehensive, customizable EHR designed for clinical workflows. Capture detailed notes, track treatment plans, manage prescriptions, and access complete patient histories instantly.</p>
+        <ul class="feature-list" aria-label="EHR features">
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Clinical note templates
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Diagnosis &amp; treatment plans
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            e-Prescribing &amp; pharmacy
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Lab &amp; imaging results
+          </li>
+        </ul>
+        <a href="ehr.html" class="feature-link" aria-label="Learn more about EHR">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Billing -->
+      <article class="feature-card blur-reveal animate-on-scroll animate-delay-4">
+        <div class="feature-icon" style="background:#fff3e0;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <rect x="1" y="4" width="22" height="16" rx="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <h3>Billing &amp; Revenue Cycle</h3>
+        <p>Maximize reimbursements with automated insurance verification, claims submission, ERA posting, and denial management — all within one integrated billing workflow.</p>
+        <ul class="feature-list" aria-label="Billing features">
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Automated insurance claims
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            ERA &amp; EOB processing
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Patient statements &amp; payments
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Revenue analytics
+          </li>
+        </ul>
+        <a href="billing.html" class="feature-link" aria-label="Learn more about Billing">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Patient Portal -->
+      <article class="feature-card blur-reveal animate-on-scroll animate-delay-5">
+        <div class="feature-icon" style="background:#f3e8ff;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3>Patient Portal</h3>
+        <p>Empower patients to take control of their healthcare experience. From scheduling and messaging to accessing records and paying bills — all in a secure patient portal.</p>
+        <ul class="feature-list" aria-label="Patient portal features">
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Online self-scheduling
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Secure provider messaging
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Document &amp; form uploads
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Online bill payment
+          </li>
+        </ul>
+        <a href="#" class="feature-link" aria-label="Learn more about Patient Portal">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Analytics -->
+      <article class="feature-card blur-reveal animate-on-scroll animate-delay-6">
+        <div class="feature-icon" style="background:#fce8e8;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
+        <h3>Reporting &amp; Analytics</h3>
+        <p>Make data-driven decisions with real-time dashboards, financial performance tracking, clinical outcome reporting, and customizable analytics across your entire organization.</p>
+        <ul class="feature-list" aria-label="Analytics features">
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Real-time financial dashboards
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Custom report builder
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Provider productivity metrics
+          </li>
+          <li class="feature-list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Payer &amp; denial analysis
+          </li>
+        </ul>
+        <a href="#" class="feature-link" aria-label="Learn more about Analytics">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     EHR PLATFORM DETAIL
+     ══════════════════════════════════════════════════════════ -->
+<section class="platform-section" id="ehr" aria-labelledby="ehr-heading">
+  <div class="container">
+    <div class="platform-inner">
+
+      <!-- Visual -->
+      <div class="platform-visual animate-on-scroll">
+        <div class="platform-mockup">
+          <div class="platform-mockup-bar">
+            <div class="platform-mockup-dots">
+              <span class="platform-mockup-dot pmd-r"></span>
+              <span class="platform-mockup-dot pmd-y"></span>
+              <span class="platform-mockup-dot pmd-g"></span>
+            </div>
+            <div class="platform-mockup-url">cavient.com/ehr</div>
+          </div>
+          <div class="platform-mockup-body">
+            <!-- EHR Mockup -->
+            <div class="ehr-grid">
+              <div class="ehr-sidebar" aria-hidden="true">
+                <div style="font-size:0.65rem;font-weight:800;color:var(--c-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-3);padding:0 var(--space-3)">Navigation</div>
+                <div class="ehr-sidebar-item active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+                  Clinical Notes
+                </div>
+                <div class="ehr-sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Patient Profile
+                </div>
+                <div class="ehr-sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3h18v13H3z"/><path d="M8 21h8M12 17v4"/></svg>
+                  Diagnosis
+                </div>
+                <div class="ehr-sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                  Medications
+                </div>
+                <div class="ehr-sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Lab Results
+                </div>
+                <div class="ehr-sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  Billing
+                </div>
+              </div>
+              <div class="ehr-main">
+                <!-- Patient header -->
+                <div style="background:var(--c-light);border-radius:var(--radius);padding:var(--space-3) var(--space-4);display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);" aria-hidden="true">
+                  <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--c-primary),var(--c-accent));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                  </div>
+                  <div>
+                    <div style="font-size:var(--text-sm);font-weight:700;color:var(--c-dark);">Sarah Mitchell</div>
+                    <div style="font-size:0.65rem;color:var(--c-muted);">DOB: 04/12/1985 · MRN: 00041287</div>
+                  </div>
+                  <div style="margin-left:auto;display:flex;gap:var(--space-2);">
+                    <span style="background:var(--c-primary-light);color:var(--c-primary);font-size:0.6rem;font-weight:800;padding:2px 8px;border-radius:var(--radius-full);">Active</span>
+                    <span style="background:var(--c-accent-light);color:var(--c-accent);font-size:0.6rem;font-weight:800;padding:2px 8px;border-radius:var(--radius-full);">Telehealth OK</span>
+                  </div>
+                </div>
+                <!-- Note card -->
+                <div class="ehr-card">
+                  <div class="ehr-card-title">Progress Note — May 21, 2026</div>
+                  <div style="font-size:0.72rem;color:var(--c-slate);line-height:1.6;margin-bottom:var(--space-3);">
+                    Patient presents with improved mood stability. Reports adherence to prescribed medication regimen. Cognitive behavioral therapy goals reviewed and updated. Next visit scheduled in 2 weeks.
+                  </div>
+                  <div class="ehr-field">
+                    <div class="ehr-field-item">
+                      <div class="ehr-field-label">Provider</div>
+                      <div class="ehr-field-value">Dr. R. Williams</div>
+                    </div>
+                    <div class="ehr-field-item">
+                      <div class="ehr-field-label">Duration</div>
+                      <div class="ehr-field-value">50 min</div>
+                    </div>
+                    <div class="ehr-field-item">
+                      <div class="ehr-field-label">CPT Code</div>
+                      <div class="ehr-field-value">90837</div>
+                    </div>
+                    <div class="ehr-field-item">
+                      <div class="ehr-field-label">Diagnosis</div>
+                      <div class="ehr-field-value">F33.1</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Vitals card -->
+                <div class="ehr-card">
+                  <div class="ehr-card-title">Treatment Plan Progress</div>
+                  <div style="display:flex;gap:var(--space-3);" aria-hidden="true">
+                    <div style="flex:1;background:var(--c-light);border-radius:var(--radius-sm);padding:var(--space-2);text-align:center;">
+                      <div style="font-size:1rem;font-weight:800;color:var(--c-primary);">8/10</div>
+                      <div style="font-size:0.6rem;color:var(--c-muted);">Sessions</div>
+                    </div>
+                    <div style="flex:1;background:var(--c-light);border-radius:var(--radius-sm);padding:var(--space-2);text-align:center;">
+                      <div style="font-size:1rem;font-weight:800;color:var(--c-success);">72%</div>
+                      <div style="font-size:0.6rem;color:var(--c-muted);">PHQ-9 Improvement</div>
+                    </div>
+                    <div style="flex:1;background:var(--c-light);border-radius:var(--radius-sm);padding:var(--space-2);text-align:center;">
+                      <div style="font-size:1rem;font-weight:800;color:var(--c-accent);">On Track</div>
+                      <div style="font-size:0.6rem;color:var(--c-muted);">Goal Status</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="platform-badge platform-badge-1" aria-hidden="true">
+          <div class="platform-badge-icon" style="background:var(--c-primary-light);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2"/><path d="M12 2c5.523 0 10 4.477 10 10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="platform-badge-text">
+            <strong>40% faster</strong>
+            <span>Documentation time</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="platform-content animate-on-scroll animate-delay-2">
+        <div class="section-label fade-up" aria-hidden="true">Electronic Health Records</div>
+        <h2 class="section-title fade-up" id="ehr-heading">Clinical Documentation That Works For You</h2>
+        <p class="section-subtitle fade-up" style="margin-bottom:var(--space-8);">
+          Stop fighting with your EHR. Cavient's clinical documentation is built around how clinicians actually work — fast, intuitive, and fully customizable for your specialty.
+        </p>
+
+        <div class="platform-feature-list">
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:var(--c-primary-light);color:var(--c-primary);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>Smart Note Templates</h4>
+              <p>Specialty-specific templates with smart text, auto-fill, and Dragon speech-to-text integration. Write comprehensive notes in minutes, not hours.</p>
+            </div>
+          </div>
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:var(--c-accent-light);color:var(--c-accent);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>Outcome Tracking &amp; Measures</h4>
+              <p>Track PHQ-9, GAD-7, PCL-5, and 50+ validated clinical outcome instruments. Visualize patient progress over time with built-in analytics.</p>
+            </div>
+          </div>
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:#e8f8ef;color:var(--c-success);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>e-Prescribing &amp; Medication Management</h4>
+              <p>Send prescriptions directly to pharmacies, manage refill requests, check drug interactions, and maintain a complete medication history — all within Cavient.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="ehr.html" class="btn btn-primary btn-lg magnetic">Explore EHR Features</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TELEHEALTH DETAIL
+     ══════════════════════════════════════════════════════════ -->
+<section class="platform-section" id="telehealth" aria-labelledby="telehealth-heading">
+  <div class="container">
+    <div class="platform-inner reverse">
+
+      <!-- Content -->
+      <div class="platform-content animate-on-scroll">
+        <div class="section-label fade-up" aria-hidden="true">Telehealth Platform</div>
+        <h2 class="section-title fade-up" id="telehealth-heading">Virtual Care Without the Technical Headaches</h2>
+        <p class="section-subtitle fade-up" style="margin-bottom:var(--space-8);">
+          Our fully integrated telehealth platform eliminates the friction of virtual care delivery. Sessions launch directly from the appointment schedule — no separate apps, no third-party tools.
+        </p>
+
+        <div class="platform-feature-list">
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:var(--c-accent-light);color:var(--c-accent);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>HD Video with Zero Setup</h4>
+              <p>Browser-based video sessions — patients click a link, providers click "Start Session." No apps, no downloads, no IT support calls. Just care.</p>
+            </div>
+          </div>
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:var(--c-primary-light);color:var(--c-primary);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>In-Session Documentation</h4>
+              <p>Take notes, view patient history, complete intake forms, and process billing — all without leaving the video session. True care continuity from screen to chart.</p>
+            </div>
+          </div>
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:#e8f8ef;color:var(--c-success);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>Mobile-First for Patients</h4>
+              <p>Patients join telehealth appointments directly from their smartphone — fully optimized for iOS and Android with automatic connection quality adjustment.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="telehealth.html" class="btn btn-primary btn-lg magnetic">Explore Telehealth</a>
+      </div>
+
+      <!-- Visual -->
+      <div class="platform-visual animate-on-scroll animate-delay-2">
+        <div class="platform-mockup" aria-hidden="true">
+          <div class="platform-mockup-bar">
+            <div class="platform-mockup-dots">
+              <span class="platform-mockup-dot pmd-r"></span>
+              <span class="platform-mockup-dot pmd-y"></span>
+              <span class="platform-mockup-dot pmd-g"></span>
+            </div>
+            <div class="platform-mockup-url">cavient.com/telehealth</div>
+          </div>
+          <div class="platform-mockup-body">
+            <!-- Telehealth Session Mock -->
+            <div class="telehealth-video" aria-hidden="true">
+              <!-- Provider -->
+              <div class="telehealth-participant">
+                <div class="telehealth-avatar">R</div>
+                <div class="telehealth-name">Dr. Williams</div>
+                <!-- mic indicator -->
+                <div style="position:absolute;top:8px;left:8px;background:rgba(45,186,108,0.85);border-radius:var(--radius-full);padding:2px 8px;font-size:0.6rem;font-weight:700;color:white;display:flex;align-items:center;gap:4px;">
+                  <span style="width:6px;height:6px;background:white;border-radius:50%;display:inline-block;animation:pulse 1.5s ease-in-out infinite;"></span>
+                  Provider
+                </div>
+              </div>
+              <!-- Patient -->
+              <div class="telehealth-participant" style="background:linear-gradient(135deg,#1a4a2e,#0f3320);">
+                <div class="telehealth-avatar" style="background:linear-gradient(135deg,var(--c-success),#1a6baa);">S</div>
+                <div class="telehealth-name">Sarah M.</div>
+                <div style="position:absolute;top:8px;left:8px;background:rgba(0,176,200,0.85);border-radius:var(--radius-full);padding:2px 8px;font-size:0.6rem;font-weight:700;color:white;">Patient</div>
+              </div>
+              <!-- Controls -->
+              <div class="telehealth-controls">
+                <button class="telehealth-btn telehealth-btn-active" aria-label="Microphone on">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+                </button>
+                <button class="telehealth-btn telehealth-btn-active" aria-label="Camera on">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                </button>
+                <button class="telehealth-btn telehealth-btn-end" aria-label="End call">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.71 10.5a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.82 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </button>
+                <button class="telehealth-btn telehealth-btn-mute" aria-label="Share screen">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </button>
+              </div>
+              <div class="telehealth-time">32:14</div>
+            </div>
+
+            <!-- Session details below video -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-4);" aria-hidden="true">
+              <div style="background:var(--c-light);border-radius:var(--radius);padding:var(--space-3) var(--space-4);">
+                <div style="font-size:0.6rem;font-weight:800;color:var(--c-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2);">Session Notes</div>
+                <div style="font-size:0.7rem;color:var(--c-slate);line-height:1.5;">Patient reports improved sleep patterns. Adjusting treatment plan...</div>
+                <div style="display:flex;gap:var(--space-2);margin-top:var(--space-2);">
+                  <span style="background:var(--c-primary-light);color:var(--c-primary);font-size:0.55rem;font-weight:800;padding:2px 6px;border-radius:var(--radius-full);">In Progress</span>
+                </div>
+              </div>
+              <div style="background:var(--c-light);border-radius:var(--radius);padding:var(--space-3) var(--space-4);">
+                <div style="font-size:0.6rem;font-weight:800;color:var(--c-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2);">Next Steps</div>
+                <div style="display:flex;flex-direction:column;gap:var(--space-1);">
+                  <div style="display:flex;align-items:center;gap:var(--space-2);font-size:0.7rem;color:var(--c-slate);">
+                    <div style="width:14px;height:14px;border-radius:50%;background:var(--c-success);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    Refill prescription
+                  </div>
+                  <div style="display:flex;align-items:center;gap:var(--space-2);font-size:0.7rem;color:var(--c-slate);">
+                    <div style="width:14px;height:14px;border-radius:50%;background:var(--c-border);flex-shrink:0;"></div>
+                    Schedule follow-up
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="platform-badge platform-badge-2" aria-hidden="true">
+          <div class="platform-badge-icon" style="background:var(--c-accent-light);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="platform-badge-text">
+            <strong>HIPAA Compliant</strong>
+            <span>End-to-end encrypted</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HOW IT WORKS
+     ══════════════════════════════════════════════════════════ -->
+<section class="how-it-works section-lg" id="how-it-works" aria-labelledby="how-heading">
+  <div class="how-bg" aria-hidden="true"></div>
+  <div class="how-grid" aria-hidden="true"></div>
+  <div class="container how-inner">
+    <div class="section-header center animate-on-scroll">
+      <div class="section-label fade-up" aria-hidden="true">Get Started</div>
+      <h2 class="section-title fade-up" id="how-heading">Up &amp; Running in 4 Simple Steps</h2>
+      <p class="section-subtitle fade-up">
+        Most practices are fully operational within 48 hours. Our dedicated onboarding team guides you every step of the way.
+      </p>
+    </div>
+
+    <div class="steps-grid" role="list">
+      <div class="step-item animate-on-scroll animate-delay-1" role="listitem">
+        <div class="step-number" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          <span class="step-num-label" aria-label="Step 1">1</span>
+        </div>
+        <h3 class="step-title">Create Your Account</h3>
+        <p class="step-desc">Sign up for free and set up your practice profile in minutes. No credit card required to start.</p>
+      </div>
+
+      <div class="step-item animate-on-scroll animate-delay-2" role="listitem">
+        <div class="step-number" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+          <span class="step-num-label" aria-label="Step 2">2</span>
+        </div>
+        <h3 class="step-title">Import Patient Data</h3>
+        <p class="step-desc">Easily migrate from your existing system. We support all major EHR formats and provide a free data migration service.</p>
+      </div>
+
+      <div class="step-item animate-on-scroll animate-delay-3" role="listitem">
+        <div class="step-number" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-num-label" aria-label="Step 3">3</span>
+        </div>
+        <h3 class="step-title">Configure &amp; Customize</h3>
+        <p class="step-desc">Set up your scheduling rules, custom note templates, billing codes, and insurance payer connections for your specialty.</p>
+      </div>
+
+      <div class="step-item animate-on-scroll animate-delay-4" role="listitem">
+        <div class="step-number" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="step-num-label" aria-label="Step 4">4</span>
+        </div>
+        <h3 class="step-title">Start Seeing Patients</h3>
+        <p class="step-desc">You're live. Schedule appointments, run telehealth visits, write notes, and get paid — all from one platform.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SPECIALTIES / WHO WE SERVE
+     ══════════════════════════════════════════════════════════ -->
+<section class="section specialties-bg" id="specialties" aria-labelledby="specialties-heading">
+  <div class="container">
+    <div class="section-header center animate-on-scroll">
+      <div class="section-label fade-up" aria-hidden="true">Specialties</div>
+      <h2 class="section-title fade-up" id="specialties-heading">Built for Every Type of Practice</h2>
+      <p class="section-subtitle fade-up">
+        Whether you're a solo practitioner or a multi-provider group, Cavient adapts to your specialty's unique workflows and compliance requirements.
+      </p>
+    </div>
+
+    <div class="specialties-grid">
+
+      <article class="specialty-card blur-reveal animate-on-scroll animate-delay-1">
+        <div class="specialty-icon" style="background:var(--c-primary-light);color:var(--c-primary);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Mental Health &amp; Behavioral Health</h3>
+        <p>Therapy-specific templates, outcome measures (PHQ-9, GAD-7), treatment planning, and crisis management protocols.</p>
+      </article>
+
+      <article class="specialty-card blur-reveal animate-on-scroll animate-delay-2">
+        <div class="specialty-icon" style="background:var(--c-accent-light);color:var(--c-accent);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Primary Care</h3>
+        <p>Comprehensive care management, chronic disease tracking, preventive care workflows, and full family medicine support.</p>
+      </article>
+
+      <article class="specialty-card blur-reveal animate-on-scroll animate-delay-3">
+        <div class="specialty-icon" style="background:#e8f8ef;color:var(--c-success);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Home Health &amp; Elder Care</h3>
+        <p>Field-ready mobile access, care coordination tools, OASIS documentation, and family communication portals.</p>
+      </article>
+
+      <article class="specialty-card blur-reveal animate-on-scroll animate-delay-4">
+        <div class="specialty-icon" style="background:#fff3e0;color:#f59e0b;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3>Specialty Care</h3>
+        <p>Flexible specialty templates for dermatology, neurology, cardiology, orthopedics, and 40+ other specialty disciplines.</p>
+      </article>
+
+      <article class="specialty-card blur-reveal animate-on-scroll animate-delay-5">
+        <div class="specialty-icon" style="background:#f3e8ff;color:#8b5cf6;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Group Practices &amp; Health Systems</h3>
+        <p>Multi-provider scheduling, enterprise reporting, role-based access controls, and organizational dashboards for growing groups.</p>
+      </article>
+
+      <article class="specialty-card blur-reveal animate-on-scroll animate-delay-6">
+        <div class="specialty-icon" style="background:#fce8e8;color:#ef4444;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Substance Use &amp; Addiction</h3>
+        <p>MAT program support, group therapy scheduling, drug testing workflows, and specialized billing for SUD treatment facilities.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section testimonials-bg" id="testimonials" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header center animate-on-scroll">
+      <div class="section-label fade-up" aria-hidden="true">Customer Stories</div>
+      <h2 class="section-title fade-up" id="testimonials-heading">Loved by Providers Everywhere</h2>
+      <p class="section-subtitle fade-up">
+        Join thousands of healthcare providers who trust Cavient to run their practices every day.
+      </p>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <article class="testimonial-card glass-hover animate-on-scroll animate-delay-1">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+        </div>
+        <blockquote class="testimonial-text">
+          "Switching to Cavient was the best decision I made for my practice. The telehealth integration alone saved me from managing three separate tools. My no-show rate dropped 40% within the first month thanks to automated reminders."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">D</div>
+          <div>
+            <div class="testimonial-author-name">Dr. Dana Phillips, LCSW</div>
+            <div class="testimonial-author-role">Private Practice, Mental Health · Chicago, IL</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testimonial-card glass-hover animate-on-scroll animate-delay-2">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+        </div>
+        <blockquote class="testimonial-text">
+          "Our billing collection rate went from 71% to 94% in 90 days. The automated insurance verification and claims scrubbing catch errors before submission. The ROI on Cavient paid for itself in the first month."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">M</div>
+          <div>
+            <div class="testimonial-author-name">Dr. Marcus Chen, MD</div>
+            <div class="testimonial-author-role">Primary Care Group · Houston, TX</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testimonial-card glass-hover animate-on-scroll animate-delay-3">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+        </div>
+        <blockquote class="testimonial-text">
+          "I run a 12-provider behavioral health group across 3 locations. Cavient's multi-location dashboard and role-based access gave us enterprise-level visibility without enterprise-level complexity or cost."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">A</div>
+          <div>
+            <div class="testimonial-author-name">Dr. Angela Roberts, Psy.D</div>
+            <div class="testimonial-author-role">Group Practice Director · Atlanta, GA</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     COMPLIANCE & SECURITY
+     ══════════════════════════════════════════════════════════ -->
+<section class="section compliance-bg" id="compliance" aria-labelledby="compliance-heading">
+  <div class="container">
+    <div class="compliance-grid">
+      <div class="animate-on-scroll">
+        <div class="section-label fade-up" aria-hidden="true">Security &amp; Compliance</div>
+        <h2 class="section-title fade-up" id="compliance-heading">Healthcare-Grade Security You Can Trust</h2>
+        <p class="section-subtitle fade-up" style="margin-bottom:var(--space-8);">
+          Cavient is built from the ground up for healthcare data security. We maintain the highest levels of compliance certification so you can focus entirely on patient care.
+        </p>
+        <div class="platform-feature-list">
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:var(--c-primary-light);color:var(--c-primary);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>HIPAA &amp; HITECH Compliant</h4>
+              <p>Full administrative, physical, and technical safeguards. BAA provided to all accounts at no additional cost.</p>
+            </div>
+          </div>
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:var(--c-accent-light);color:var(--c-accent);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>256-bit AES Encryption</h4>
+              <p>Data encrypted at rest and in transit. Zero-knowledge architecture for maximum patient privacy.</p>
+            </div>
+          </div>
+          <div class="platform-feature-item">
+            <div class="platform-feature-icon" style="background:#e8f8ef;color:var(--c-success);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="platform-feature-text">
+              <h4>SOC 2 Type II Certified</h4>
+              <p>Annual third-party security audits confirm our security, availability, and confidentiality controls exceed industry standards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="animate-on-scroll animate-delay-2">
+        <div class="compliance-badges">
+          <div class="compliance-badge">
+            <div class="compliance-badge-icon" style="background:var(--c-primary-light);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <strong>HIPAA Compliant</strong>
+            <span>Full safeguard compliance</span>
+          </div>
+          <div class="compliance-badge">
+            <div class="compliance-badge-icon" style="background:#e8f8ef;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-success)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z"/></svg>
+            </div>
+            <strong>SOC 2 Type II</strong>
+            <span>Annually audited</span>
+          </div>
+          <div class="compliance-badge">
+            <div class="compliance-badge-icon" style="background:var(--c-accent-light);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <strong>256-bit Encrypted</strong>
+            <span>At rest &amp; in transit</span>
+          </div>
+          <div class="compliance-badge">
+            <div class="compliance-badge-icon" style="background:#fff3e0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <strong>99.9% Uptime SLA</strong>
+            <span>Guaranteed availability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PRICING
+     ══════════════════════════════════════════════════════════ -->
+<section class="section pricing-bg" id="pricing" aria-labelledby="pricing-heading">
+  <div class="container">
+    <div class="section-header center animate-on-scroll">
+      <div class="section-label fade-up" aria-hidden="true">Transparent Pricing</div>
+      <h2 class="section-title fade-up" id="pricing-heading">Simple, Predictable Plans</h2>
+      <p class="section-subtitle fade-up">
+        No hidden fees. No per-claim charges. Plans that scale with your practice — from solo practitioners to large group practices.
+      </p>
+    </div>
+
+    <!-- Billing Toggle -->
+    <div class="pricing-toggle" role="group" aria-label="Billing period toggle">
+      <span class="toggle-label" id="monthly-label">Monthly</span>
+      <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-labelledby="monthly-label annual-label" tabindex="0">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-label" id="annual-label">Annual</span>
+      <span class="toggle-badge">Save 20%</span>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="pricing-card tilt-card animate-on-scroll animate-delay-1">
+        <div class="pricing-plan-name">Starter</div>
+        <div class="pricing-price" aria-label="$89 per month">
+          <span class="pricing-currency">$</span>
+          <span class="pricing-amount" id="price-starter">89</span>
+          <span class="pricing-period">/month</span>
+        </div>
+        <p class="pricing-desc">Perfect for solo practitioners and small practices getting started with a unified platform.</p>
+        <div class="pricing-divider" role="separator"></div>
+        <ul class="pricing-features" aria-label="Starter plan features">
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Up to 2 providers
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Practice Management
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            EHR &amp; Clinical Notes
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Basic Telehealth
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Patient Portal
+          </li>
+          <li class="pricing-feature disabled">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Insurance Billing
+          </li>
+          <li class="pricing-feature disabled">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Advanced Analytics
+          </li>
+        </ul>
+        <div class="pricing-cta">
+          <a href="register.html" class="btn btn-outline w-full" target="_blank" rel="noopener" style="justify-content:center;">Start Free Trial</a>
+        </div>
+      </div>
+
+      <!-- Professional (Featured) -->
+      <div class="pricing-card tilt-card featured animate-on-scroll animate-delay-2" aria-label="Recommended plan">
+        <div class="pricing-badge" aria-label="Most popular plan">Most Popular</div>
+        <div class="pricing-plan-name">Professional</div>
+        <div class="pricing-price" aria-label="$189 per month">
+          <span class="pricing-currency">$</span>
+          <span class="pricing-amount" id="price-pro">189</span>
+          <span class="pricing-period">/month</span>
+        </div>
+        <p class="pricing-desc">The complete platform for growing practices that need full billing, unlimited telehealth, and advanced reporting.</p>
+        <div class="pricing-divider" role="separator"></div>
+        <ul class="pricing-features" aria-label="Professional plan features">
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Up to 10 providers
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Everything in Starter
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Insurance Billing &amp; ERA
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Advanced Telehealth + Groups
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            e-Prescribing
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Advanced Analytics
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Priority Support
+          </li>
+        </ul>
+        <div class="pricing-cta">
+          <a href="register.html" class="btn btn-outline w-full" target="_blank" rel="noopener" style="justify-content:center;">Start Free Trial</a>
+        </div>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card tilt-card animate-on-scroll animate-delay-3">
+        <div class="pricing-plan-name">Enterprise</div>
+        <div class="pricing-price" aria-label="Custom pricing">
+          <span class="pricing-amount" style="font-size:2.5rem;">Custom</span>
+        </div>
+        <p class="pricing-desc">For large group practices, health systems, and multi-location organizations with custom integration needs.</p>
+        <div class="pricing-divider" role="separator"></div>
+        <ul class="pricing-features" aria-label="Enterprise plan features">
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Unlimited providers
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Everything in Professional
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Multi-location management
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Custom API integrations
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            SSO &amp; SAML
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Dedicated CSM
+          </li>
+          <li class="pricing-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            SLA &amp; Uptime guarantee
+          </li>
+        </ul>
+        <div class="pricing-cta">
+          <a href="register.html" class="btn btn-primary w-full" target="_blank" rel="noopener" style="justify-content:center;">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing note -->
+    <p class="text-center text-muted mt-8" style="font-size:var(--text-sm);">
+      All plans include free data migration, HIPAA BAA, and 30-day money-back guarantee. No contracts required.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     INTEGRATIONS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section integrations-bg" id="integrations" aria-labelledby="integrations-heading">
+  <div class="container">
+    <div class="section-header center animate-on-scroll">
+      <div class="section-label fade-up" aria-hidden="true">Integrations</div>
+      <h2 class="section-title fade-up" id="integrations-heading">Works With Your Existing Ecosystem</h2>
+      <p class="section-subtitle fade-up">
+        Cavient connects seamlessly with the labs, pharmacies, payers, and tools your practice already depends on.
+      </p>
+    </div>
+
+    <div class="integrations-logos" aria-label="Integration partners">
+      <div class="integration-logo">Surescripts</div>
+      <div class="integration-logo">LabCorp</div>
+      <div class="integration-logo">Quest Dx</div>
+      <div class="integration-logo">Waystar</div>
+      <div class="integration-logo">Stripe</div>
+      <div class="integration-logo">Twilio</div>
+      <div class="integration-logo">Availity</div>
+      <div class="integration-logo">Change HCI</div>
+      <div class="integration-logo">DrFirst</div>
+      <div class="integration-logo">Doceree</div>
+      <div class="integration-logo">Google Cal</div>
+      <div class="integration-logo">Zoom Rx</div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="#" class="btn btn-outline btn-lg">View All Integrations</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CTA BANNER
+     ══════════════════════════════════════════════════════════ -->
+<section class="cta-banner" aria-labelledby="cta-heading">
+  <div class="cta-banner-bg" aria-hidden="true"></div>
+  <div class="cta-banner-grid" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cta-banner-inner animate-on-scroll">
+      <div class="badge badge-white" style="margin-bottom:var(--space-5);margin-inline:auto;width:fit-content;" aria-hidden="true">
+        🏥 &nbsp; Start Your 30-Day Free Trial
+      </div>
+      <h2 id="cta-heading">Ready to Transform<br>Your Practice?</h2>
+      <p>Join over 5,000 healthcare providers who use Cavient to deliver better care, reduce administrative burden, and grow their practice with confidence.</p>
+      <div class="cta-btns">
+        <a href="https://cavient.com/register" class="btn btn-white btn-lg" target="_blank" rel="noopener">
+            Get Started Free
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn btn-outline-white btn-lg">Schedule a Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="Cavient home">
+          <!-- <img src="https://i.ibb.co.com/s8JzNLp/Cavient.png"> -->
+          <img style="width: auto; height: 50px;" src="https://i.ibb.co.com/wHKjn31/Cavient-logo.png">
+        </a>
+        <p class="footer-brand-desc">
+          The all-in-one healthcare practice management platform. Empowering providers to deliver exceptional care while running a thriving practice.
+        </p>
+        <div class="footer-social" aria-label="Cavient social media">
+          <!-- Twitter/X -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.732-8.855L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div>
+        <h3 class="footer-col-title">Platform</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="practice-management.html" class="footer-link">Practice Management</a></li>
+          <li><a href="telehealth.html" class="footer-link">Telehealth</a></li>
+          <li><a href="ehr.html" class="footer-link">Electronic Health Records</a></li>
+          <li><a href="billing.html" class="footer-link">Billing &amp; Revenue</a></li>
+          <li><a href="#" class="footer-link">Patient Portal</a></li>
+          <li><a href="#" class="footer-link">Analytics &amp; Reporting</a></li>
+        </ul>
+      </div>
+
+      <!-- Specialties -->
+      <div>
+        <h3 class="footer-col-title">Specialties</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#" class="footer-link">Mental Health</a></li>
+          <li><a href="#" class="footer-link">Primary Care</a></li>
+          <li><a href="#" class="footer-link">Home Health</a></li>
+          <li><a href="#" class="footer-link">Specialty Care</a></li>
+          <li><a href="#" class="footer-link">Group Practices</a></li>
+          <li><a href="#" class="footer-link">Substance Use</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="footer-col-title">Resources</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="blog.html" class="footer-link">Blog</a></li>
+          <li><a href="help.html" class="footer-link">Help Center</a></li>
+          <li><a href="customer-stories.html" class="footer-link">Customer Stories</a></li>
+          <li><a href="blog.html#webinars" class="footer-link">Webinars</a></li>
+          <li><a href="#" class="footer-link">API Docs</a></li>
+          <li><a href="#" class="footer-link">Status Page</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="about.html" class="footer-link">About Cavient</a></li>
+          <li><a href="https://cavient.com/careers" class="footer-link" target="_blank">Careers</a></li>
+          <li><a href="about.html#press" class="footer-link">Press</a></li>
+          <li><a href="https://cavient.com/contact" class="footer-link" target="_blank">Contact Us</a></li>
+          <li><a href="#" class="footer-link">Partners</a></li>
+          <li><a href="#" class="footer-link">Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Cavient, Inc. All rights reserved. Dev By Joy</p>
+      <div class="footer-hipaa" aria-label="HIPAA compliance status">
+        <span class="hipaa-badge" aria-label="HIPAA Compliant">HIPAA</span>
+        Compliant · Secure · Trusted
+      </div>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">BAA</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════════════════════ -->
+<script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

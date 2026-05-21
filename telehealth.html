@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cavient Telehealth — HIPAA-compliant video visits, secure messaging, and virtual care tools built natively into your practice workflow." />
+  <title>Telehealth — Cavient</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6baa'/><path d='M8 16 C8 11.6 11.6 8 16 8 S24 11.6 24 16 S20.4 24 16 24' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='16' cy='16' r='3' fill='%2300b0c8'/></svg>" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Shared page-hero pattern (duplicated from pm page) ── */
+    .page-hero {
+      position: relative;
+      background: var(--c-dark);
+      padding: 160px 0 100px;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 40%, rgba(0,176,200,0.2) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 50% at 5% 80%, rgba(26,107,170,0.15) 0%, transparent 60%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+    .page-hero-label {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: rgba(0,176,200,0.12);
+      border: 1px solid rgba(0,176,200,0.25);
+      color: var(--c-accent);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: var(--space-5);
+    }
+    .page-hero-label svg { width: 12px; height: 12px; }
+    .page-hero-title {
+      font-family: var(--font-display); font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 700; line-height: 1.15; color: var(--c-white); margin-bottom: var(--space-5);
+    }
+    .page-hero-title .accent { color: var(--c-accent); }
+    .page-hero-subtitle {
+      font-size: 1.1rem; color: rgba(255,255,255,0.65);
+      line-height: 1.7; margin-bottom: var(--space-8); max-width: 500px;
+    }
+    .page-hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+    .page-hero-stats {
+      display: flex; gap: var(--space-8); margin-top: var(--space-10);
+      padding-top: var(--space-8); border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .page-hero-stat-value {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+      color: var(--c-white); line-height: 1;
+    }
+    .page-hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+    /* ── Video call mockup ── */
+    .video-mockup {
+      background: #0a0f1a;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.07);
+    }
+    .video-topbar {
+      background: #0f172a;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .video-dots { display: flex; gap: 6px; }
+    .video-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .video-dot.r { background: #ef4444; }
+    .video-dot.y { background: #f59e0b; }
+    .video-dot.g { background: #22c55e; }
+    .video-session-info {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .video-live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #ef4444;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .video-session-label { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; }
+    .video-timer { font-size: 11px; color: rgba(255,255,255,0.35); font-variant-numeric: tabular-nums; }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 4px;
+      background: #050a12;
+    }
+    .video-tile {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+    }
+    .video-tile-main {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/7;
+    }
+    .video-tile-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: white;
+    }
+    .video-name-tag {
+      position: absolute; bottom: 10px; left: 10px;
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 10.5px; font-weight: 600; color: white;
+    }
+    .video-name-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+    .video-self-tile {
+      position: absolute; bottom: 12px; right: 12px;
+      width: 90px; height: 70px;
+      border-radius: 8px; overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+    .video-controls {
+      background: #0f172a;
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .video-ctrl-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-ctrl-btn svg { width: 16px; height: 16px; }
+    .video-ctrl-btn.active { background: rgba(255,255,255,0.08); color: white; }
+    .video-ctrl-btn.danger { background: #ef4444; color: white; }
+    .video-sidebar {
+      background: #0f172a;
+      padding: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .video-sidebar-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 10px;
+    }
+    .video-note {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* ── Feature grid ── */
+    .features-alt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .feature-alt-card {
+      background: var(--c-white);
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: var(--space-7);
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .feature-alt-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--c-accent), var(--c-primary));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+    }
+    .feature-alt-card:hover { box-shadow: 0 12px 40px rgba(0,176,200,0.1); transform: translateY(-4px); border-color: rgba(0,176,200,0.2); }
+    .feature-alt-card:hover::after { transform: scaleX(1); }
+    .feature-alt-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-5);
+    }
+    .feature-alt-icon svg { width: 24px; height: 24px; }
+    .feature-alt-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--c-dark); margin-bottom: var(--space-3); }
+    .feature-alt-card p { font-size: 0.9rem; color: var(--c-slate); line-height: 1.65; }
+
+    /* ── Compliance trust band ── */
+    .compliance-band {
+      background: var(--c-light);
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+      padding: var(--space-10) 0;
+    }
+    .compliance-band-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+    .compliance-band-headline { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--c-dark); max-width: 280px; }
+    .compliance-chips { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .compliance-chip {
+      display: flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--c-border);
+      border-radius: 12px; padding: 10px 16px;
+    }
+    .compliance-chip-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .compliance-chip-icon svg { width: 16px; height: 16px; }
+    .compliance-chip-label { font-size: 0.85rem; font-weight: 700; color: var(--c-dark); }
+    .compliance-chip-sub { font-size: 0.75rem; color: var(--c-muted); }
+
+    /* ── Workflow dark section ── */
+    .workflow-section {
+      background: var(--c-dark); position: relative; overflow: hidden;
+    }
+    .workflow-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(0,176,200,0.08) 0%, transparent 70%);
+    }
+    .workflow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items: center; position: relative; }
+    .workflow-steps { display: flex; flex-direction: column; gap: var(--space-6); }
+    .workflow-step {
+      display: flex; gap: var(--space-5); align-items: flex-start;
+      padding: var(--space-6); border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .workflow-step:hover { background: rgba(0,176,200,0.08); border-color: rgba(0,176,200,0.25); }
+    .workflow-step-num {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--c-accent), var(--c-primary));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .workflow-step-content h4 { font-size: 1rem; font-weight: 700; color: var(--c-white); margin-bottom: var(--space-2); }
+    .workflow-step-content p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+    /* ── Video features list ── */
+    .video-feature-list { display: flex; flex-direction: column; gap: var(--space-4); }
+    .video-feature-item {
+      display: flex; gap: var(--space-4); align-items: flex-start;
+      padding: var(--space-5); border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .video-feature-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(0,176,200,0.15);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .video-feature-icon svg { width: 18px; height: 18px; color: var(--c-accent); }
+    .video-feature-text h5 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: var(--space-1); }
+    .video-feature-text p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ── Testimonials ── */
+    .testimonial-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+    .testimonial-mini { background: white; border: 1px solid var(--c-border); border-radius: 16px; padding: var(--space-7); }
+    .testimonial-mini-stars { display: flex; gap: 3px; margin-bottom: var(--space-4); color: #f59e0b; }
+    .testimonial-mini-stars svg { width: 14px; height: 14px; }
+    .testimonial-mini-quote { font-size: 0.9rem; color: var(--c-slate); line-height: 1.65; margin-bottom: var(--space-5); }
+    .testimonial-mini-author { display: flex; align-items: center; gap: var(--space-3); }
+    .testimonial-mini-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
+    .testimonial-mini-name { font-size: 0.88rem; font-weight: 700; color: var(--c-dark); }
+    .testimonial-mini-role { font-size: 0.78rem; color: var(--c-muted); }
+
+    /* ── CTA ── */
+    .page-cta {
+      background: linear-gradient(135deg, #062d50 0%, #0d3d6b 50%, #125490 100%);
+      position: relative; overflow: hidden;
+    }
+    .page-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(0,176,200,0.2) 0%, transparent 60%);
+    }
+    .page-cta-inner { position: relative; text-align: center; max-width: 680px; margin: 0 auto; }
+    .page-cta-inner .section-title { color: var(--c-white); }
+    .page-cta-inner .section-subtitle { color: rgba(255,255,255,0.65); }
+    .page-cta-actions { display: flex; gap: var(--space-3); justify-content: center; margin-top: var(--space-8); }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      height: 48px; padding: 0 var(--space-6);
+      border: 2px solid rgba(255,255,255,0.3); border-radius: var(--radius-full);
+      font-weight: 700; font-size: 0.9rem; color: var(--c-white); transition: all 0.2s;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .features-alt-grid { grid-template-columns: 1fr 1fr; }
+      .workflow-grid { grid-template-columns: 1fr; }
+      .compliance-band-inner { grid-template-columns: 1fr; }
+      .testimonial-mini-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 0 70px; }
+      .features-alt-grid { grid-template-columns: 1fr; }
+      .page-hero-stats { flex-wrap: wrap; gap: var(--space-5); }
+      .video-grid { grid-template-columns: 1fr; }
+      .video-tile-main { aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+<!-- NAVIGATION -->
+<nav class="nav nav-transparent" id="mainNav" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Cavient Home">
+        <img src="https://i.ibb.co.com/PZtbPWqY/Cavient.png" alt="Cavient" class="nav-logo-img" />
+      </a>
+
+      <!-- Menu -->
+      <ul class="nav-menu" role="list">
+
+        <!-- Platform dropdown -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="practice-management.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+              </span>
+              Practice Management
+            </a>
+            <a href="telehealth.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/><path d="M12 12v-2M12 16v2"/></svg>
+              </span>
+              Telehealth
+            </a>
+            <a href="ehr.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+              </span>
+              Electronic Health Records
+            </a>
+            <a href="billing.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+              </span>
+              Billing & Revenue
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="index.html#specialties" class="nav-link">Specialties</a></li>
+        <li class="nav-item"><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="blog.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </span>
+              Blog &amp; Articles
+            </a>
+            <a href="help.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              </span>
+              Help Center
+            </a>
+            <a href="customer-stories.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              Customer Stories
+            </a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login" target="_blank" rel="noopener">Log In</a>
+        <button><a href="register.html" target="_blank" rel="noopener" class="btn btn-accent btn-lg magnetic">Get Started Free</a></button>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<section class="page-hero" aria-label="Telehealth hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-grid" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero-inner">
+
+      <div class="animate-on-scroll">
+        <div class="page-hero-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/></svg>
+          Telehealth
+        </div>
+        <h1 class="page-hero-title text-reveal">Virtual Care That Feels<br>Completely In-Person</h1>
+        <p class="page-hero-subtitle">HIPAA-compliant video visits built natively into Cavient — no third-party apps, no confusing links. Patients click once and they're in.</p>
+        <div class="page-hero-actions">
+          <a href="register.html" class="btn btn-primary btn-lg magnetic" target="_blank" rel="noopener">Start Free Trial</a>
+          <a href="#" class="btn btn-outline-light btn-lg">See It Live</a>
+        </div>
+        <div class="page-hero-stats">
+          <div>
+            <div class="page-hero-stat-value">99.8%</div>
+            <div class="page-hero-stat-label">Session uptime SLA</div>
+          </div>
+          <div>
+            <div class="page-hero-stat-value">1-click</div>
+            <div class="page-hero-stat-label">Patient join flow</div>
+          </div>
+          <div>
+            <div class="page-hero-stat-value">256-bit</div>
+            <div class="page-hero-stat-label">End-to-end encryption</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video call mockup -->
+      <div class="video-mockup animate-on-scroll" aria-label="Telehealth video session preview" aria-hidden="true">
+        <div class="video-topbar">
+          <div class="video-dots">
+            <div class="video-dot r"></div>
+            <div class="video-dot y"></div>
+            <div class="video-dot g"></div>
+          </div>
+          <div class="video-session-info">
+            <div class="video-live-dot"></div>
+            <span class="video-session-label">Session in progress · Dr. Marcus &amp; Emma Collins</span>
+          </div>
+          <span class="video-timer">24:17</span>
+        </div>
+
+        <!-- Main video area -->
+        <div style="background:#050a12;padding:4px 4px 0;position:relative;">
+          <!-- Provider tile (main) -->
+          <div style="border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/8;background:linear-gradient(135deg,#0d2040,#071525);">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="text-align:center;">
+                <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1a6baa,#00b0c8);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:white;margin:0 auto 10px;">DM</div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.4);">Camera Off</div>
+              </div>
+            </div>
+            <!-- Patient self-view -->
+            <div style="position:absolute;bottom:12px;right:12px;width:110px;height:82px;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,0.15);background:linear-gradient(135deg,#0c2a14,#072b12);">
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2dba6c,#1a6baa);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;">EC</div>
+              </div>
+              <div style="position:absolute;bottom:5px;left:6px;font-size:9px;color:rgba(255,255,255,0.6);font-weight:600;">Emma (You)</div>
+            </div>
+            <!-- Name tag -->
+            <div style="position:absolute;bottom:12px;left:12px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border-radius:8px;padding:4px 10px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;"></div>
+              <span style="font-size:10.5px;font-weight:600;color:white;">Dr. Marcus</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="video-controls">
+          <div class="video-ctrl-btn active" title="Toggle Mic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 23h8"/></svg>
+          </div>
+          <div class="video-ctrl-btn active" title="Toggle Camera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <div class="video-ctrl-btn danger" title="End Call" style="width:48px;height:48px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 8.9 19.79 19.79 0 0 1 1.61 2a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 23 16.92z"/></svg>
+          </div>
+          <div class="video-ctrl-btn active" title="Share Screen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="video-ctrl-btn active" title="Chat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+
+        <!-- Session notes panel -->
+        <div class="video-sidebar">
+          <div class="video-sidebar-title">Session Notes (Auto-saved)</div>
+          <div class="video-note">
+            Patient reports improved sleep (7–8 hrs/night). Mood stabilized. Continuing Lexapro 10mg. Next session in 2 weeks. PHQ-9 score: <strong style="color:#4ade80;">8 ↓</strong> from 14 at last visit.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FEATURES ══ -->
+<section class="section" aria-labelledby="features-heading">
+  <div class="container">
+    <header class="section-header center animate-on-scroll">
+      <div class="section-label fade-up">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Platform Features
+      </div>
+      <h2 class="section-title fade-up" id="features-heading">Everything You Need for<br>Best-in-Class Virtual Care</h2>
+      <p class="section-subtitle fade-up">Cavient Telehealth is fully integrated with your EHR, scheduler, and billing — so every virtual visit is documented and reimbursed automatically.</p>
+    </header>
+    <div class="features-alt-grid">
+      <div class="feature-alt-card blur-reveal animate-on-scroll">
+        <div class="feature-alt-icon" style="background:rgba(0,176,200,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <h3>HD Video Visits</h3>
+        <p>Crystal-clear 1080p video with adaptive bitrate technology that maintains quality on low-bandwidth connections. Works in any modern browser — no downloads required.</p>
+      </div>
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.05s;">
+        <div class="feature-alt-icon" style="background:rgba(26,107,170,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Group Therapy Sessions</h3>
+        <p>Host group sessions with up to 20 participants. Manage breakout rooms, shared materials, and attendance tracking all from within the session interface.</p>
+      </div>
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.1s;">
+        <div class="feature-alt-icon" style="background:rgba(45,186,108,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>256-bit Encryption</h3>
+        <p>Every session is end-to-end encrypted and fully HIPAA compliant. No video data is stored without explicit opt-in. Your BAA is built in from day one.</p>
+      </div>
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.15s;">
+        <div class="feature-alt-icon" style="background:rgba(124,58,237,0.08);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Secure Messaging</h3>
+        <p>Between-session HIPAA-compliant chat for follow-up questions, prescription reminders, and care plan updates. Automatically archived in the patient chart.</p>
+      </div>
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.2s;">
+        <div class="feature-alt-icon" style="background:rgba(245,158,11,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Live Documentation</h3>
+        <p>AI-assisted note-taking runs in the background during sessions, generating draft SOAP notes that providers review and sign off on — cutting charting time by half.</p>
+      </div>
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.25s;">
+        <div class="feature-alt-icon" style="background:rgba(239,68,68,0.08);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Screen Sharing &amp; Whiteboard</h3>
+        <p>Share psychoeducation materials, treatment plans, or mood tracking tools during sessions. The interactive whiteboard supports collaborative exercises in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ COMPLIANCE BAND ══ -->
+<div class="compliance-band" role="region" aria-label="Security and compliance certifications">
+  <div class="container">
+    <div class="compliance-band-inner">
+      <h2 class="compliance-band-headline">Built for Healthcare Compliance</h2>
+      <div class="compliance-chips">
+        <div class="compliance-chip">
+          <div class="compliance-chip-icon" style="background:rgba(26,107,170,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="compliance-chip-label">HIPAA Compliant</div><div class="compliance-chip-sub">Business Associate Agreement included</div></div>
+        </div>
+        <div class="compliance-chip">
+          <div class="compliance-chip-icon" style="background:rgba(45,186,108,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <div><div class="compliance-chip-label">SOC 2 Type II</div><div class="compliance-chip-sub">Annual independent audit</div></div>
+        </div>
+        <div class="compliance-chip">
+          <div class="compliance-chip-icon" style="background:rgba(0,176,200,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div><div class="compliance-chip-label">256-bit Encryption</div><div class="compliance-chip-sub">End-to-end for every session</div></div>
+        </div>
+        <div class="compliance-chip">
+          <div class="compliance-chip-icon" style="background:rgba(124,58,237,0.08);"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg></div>
+          <div><div class="compliance-chip-label">ONC Certified</div><div class="compliance-chip-sub">Health IT module certification</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section workflow-section" aria-labelledby="how-heading">
+  <div class="container">
+    <div class="workflow-grid">
+      <div class="animate-on-scroll">
+        <header class="section-header" style="margin-bottom:var(--space-8);">
+          <div class="section-label fade-up" style="color:var(--c-accent);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            The Telehealth Flow
+          </div>
+          <h2 class="section-title fade-up" id="how-heading" style="color:var(--c-white);">Simple for Patients.<br>Powerful for Providers.</h2>
+          <p class="section-subtitle fade-up" style="color:rgba(255,255,255,0.6);">From booking to billing, every step of the virtual visit is automated and fully connected to your existing workflow.</p>
+        </header>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-step-content">
+              <h4>Patient Books a Video Visit</h4>
+              <p>Patients self-schedule telehealth visits through the patient portal or your website. Insurance eligibility is verified instantly at the time of booking.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-step-content">
+              <h4>Automated Reminder with Link</h4>
+              <p>24 hours and 15 minutes before the session, the patient receives a personalized reminder with a one-click join link — no app needed, no account to create.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-step-content">
+              <h4>Secure Session in Your Platform</h4>
+              <p>Provider and patient connect directly inside Cavient. Notes draft in the background, vital signs can be recorded, and labs can be ordered — all within the session.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-step-content">
+              <h4>Auto-Billing &amp; Documentation</h4>
+              <p>After the session ends, the note is signed, the claim is submitted, and the patient receives their after-visit summary — completely automated.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video feature list -->
+      <div class="video-feature-list animate-on-scroll">
+        <div class="video-feature-item">
+          <div class="video-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 12 18.92a19.5 19.5 0 0 1-5-5 19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 5.77 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 10.91a16 16 0 0 0 5.55 5.55l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="video-feature-text">
+            <h5>No-Download Patient Experience</h5>
+            <p>Patients join directly from a browser link. No app store visits, no account creation, no confusion. Works on iOS, Android, and desktop equally well.</p>
+          </div>
+        </div>
+        <div class="video-feature-item">
+          <div class="video-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="video-feature-text">
+            <h5>Waiting Room Management</h5>
+            <p>Patients wait in a branded virtual lobby. Providers see who is waiting, can send messages, and admit patients when ready — just like a real front desk.</p>
+          </div>
+        </div>
+        <div class="video-feature-item">
+          <div class="video-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg></div>
+          <div class="video-feature-text">
+            <h5>Multi-State Licensure Support</h5>
+            <p>Cavient tracks provider licensure by state and automatically validates that patients are located in a jurisdiction where the provider is licensed at session start.</p>
+          </div>
+        </div>
+        <div class="video-feature-item">
+          <div class="video-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="video-feature-text">
+            <h5>Telehealth-Specific Billing Codes</h5>
+            <p>Cavient automatically selects the correct CPT/POS codes for telehealth visits (95, 02, 10) based on service type and payer — maximizing reimbursement, minimizing denials.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="section" style="background:var(--c-light);" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <header class="section-header center animate-on-scroll">
+      <div class="section-label fade-up">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        Provider Stories
+      </div>
+      <h2 class="section-title fade-up" id="testimonials-heading">Providers Love Cavient Telehealth</h2>
+    </header>
+    <div class="testimonial-mini-grid">
+      <div class="testimonial-mini animate-on-scroll">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">"I used to run telehealth on a separate app and manually copy notes into our EHR. With Cavient, the session, notes, and billing all happen in one place. I've reclaimed an hour a day."</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#00b0c8,#1a6baa)">TW</div>
+          <div>
+            <div class="testimonial-mini-name">Dr. Tanya Williams, MD</div>
+            <div class="testimonial-mini-role">Psychiatrist · Houston, TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-mini animate-on-scroll" style="transition-delay:0.1s;">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">"My rural patients used to go months without care because they couldn't drive to appointments. Telehealth through Cavient has transformed access — and outcomes."</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#2dba6c,#00b0c8)">SR</div>
+          <div>
+            <div class="testimonial-mini-name">Dr. Samuel Reyes, LMFT</div>
+            <div class="testimonial-mini-role">Therapist · Rural Montana</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-mini animate-on-scroll" style="transition-delay:0.2s;">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">"Our group therapy sessions are now fully virtual. Cavient's group video feature handles 15 participants effortlessly — better than tools we paid triple the price for."</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#7c3aed,#1a6baa)">AL</div>
+          <div>
+            <div class="testimonial-mini-name">Angela Lewis, LCSW</div>
+            <div class="testimonial-mini-role">Group Practice Director · New York, NY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section class="section page-cta" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="page-cta-inner animate-on-scroll">
+      <div class="section-label fade-up" style="justify-content:center;color:rgba(255,255,255,0.6);margin-bottom:var(--space-4);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Launch Your Telehealth Practice
+      </div>
+      <h2 class="section-title fade-up" id="cta-heading">Start Seeing Patients Virtually Today</h2>
+      <p class="section-subtitle fade-up">Cavient Telehealth is ready from day one — no hardware, no IT team, no lengthy setup. Your first video session can happen within hours of signing up.</p>
+      <div class="page-cta-actions">
+        <a href="register.html" class="btn btn-accent btn-lg magnetic" target="_blank" rel="noopener">Start Free 30-Day Trial</a>
+        <button onclick="openDemoModal()" class="btn-outline-white btn-lg" type="button">Schedule a Demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="Cavient home">
+          <!-- <img src="https://i.ibb.co.com/s8JzNLp/Cavient.png"> -->
+          <img style="width: auto; height: 50px;" src="https://i.ibb.co.com/wHKjn31/Cavient-logo.png">
+        </a>
+        <p class="footer-brand-desc">
+          The all-in-one healthcare practice management platform. Empowering providers to deliver exceptional care while running a thriving practice.
+        </p>
+        <div class="footer-social" aria-label="Cavient social media">
+          <!-- Twitter/X -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.732-8.855L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div>
+        <h3 class="footer-col-title">Platform</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="practice-management.html" class="footer-link">Practice Management</a></li>
+          <li><a href="telehealth.html" class="footer-link">Telehealth</a></li>
+          <li><a href="ehr.html" class="footer-link">Electronic Health Records</a></li>
+          <li><a href="billing.html" class="footer-link">Billing &amp; Revenue</a></li>
+          <li><a href="#" class="footer-link">Patient Portal</a></li>
+          <li><a href="#" class="footer-link">Analytics &amp; Reporting</a></li>
+        </ul>
+      </div>
+
+      <!-- Specialties -->
+      <div>
+        <h3 class="footer-col-title">Specialties</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#" class="footer-link">Mental Health</a></li>
+          <li><a href="#" class="footer-link">Primary Care</a></li>
+          <li><a href="#" class="footer-link">Home Health</a></li>
+          <li><a href="#" class="footer-link">Specialty Care</a></li>
+          <li><a href="#" class="footer-link">Group Practices</a></li>
+          <li><a href="#" class="footer-link">Substance Use</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="footer-col-title">Resources</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="blog.html" class="footer-link">Blog</a></li>
+          <li><a href="help.html" class="footer-link">Help Center</a></li>
+          <li><a href="customer-stories.html" class="footer-link">Customer Stories</a></li>
+          <li><a href="blog.html#webinars" class="footer-link">Webinars</a></li>
+          <li><a href="#" class="footer-link">API Docs</a></li>
+          <li><a href="#" class="footer-link">Status Page</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="about.html" class="footer-link">About Cavient</a></li>
+          <li><a href="https://cavient.com/careers" class="footer-link" target="_blank">Careers</a></li>
+          <li><a href="about.html#press" class="footer-link">Press</a></li>
+          <li><a href="https://cavient.com/contact" class="footer-link" target="_blank">Contact Us</a></li>
+          <li><a href="#" class="footer-link">Partners</a></li>
+          <li><a href="#" class="footer-link">Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Cavient, Inc. All rights reserved. Dev By Joy</p>
+      <div class="footer-hipaa" aria-label="HIPAA compliance status">
+        <span class="hipaa-badge" aria-label="HIPAA Compliant">HIPAA</span>
+        Compliant · Secure · Trusted
+      </div>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">BAA</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

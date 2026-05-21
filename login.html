@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Log in to Cavient — Your all-in-one healthcare practice management platform." />
+  <title>Log In — Cavient</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6baa'/><path d='M8 16 C8 11.6 11.6 8 16 8 S24 11.6 24 16 S20.4 24 16 24' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='16' cy='16' r='3' fill='%2300b0c8'/></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── CSS Variables (Cavient Design System) ── */
+    :root {
+      --c-primary:       #1a6baa;
+      --c-primary-dark:  #125490;
+      --c-primary-light: #e8f3fb;
+      --c-accent:        #00b0c8;
+      --c-accent-light:  #e0f7fb;
+      --c-success:       #2dba6c;
+      --c-warning:       #f59e0b;
+      --c-dark:          #0d1b2e;
+      --c-dark-2:        #162840;
+      --c-navy:          #1c3557;
+      --c-slate:         #3a5a7c;
+      --c-muted:         #6b8caa;
+      --c-border:        #d4e4f0;
+      --c-light:         #f0f6fc;
+      --c-white:         #ffffff;
+      --font-display:    'DM Serif Display', Georgia, serif;
+      --font-body:       'Nunito Sans', -apple-system, sans-serif;
+      --radius-sm: 4px; --radius: 8px; --radius-md: 12px;
+      --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+      --shadow-sm:  0 1px 3px rgba(26,107,170,0.08), 0 1px 2px rgba(26,107,170,0.04);
+      --shadow:     0 4px 16px rgba(26,107,170,0.10), 0 2px 6px rgba(26,107,170,0.06);
+      --shadow-md:  0 8px 32px rgba(26,107,170,0.14), 0 4px 12px rgba(26,107,170,0.08);
+      --shadow-lg:  0 20px 60px rgba(26,107,170,0.16), 0 8px 24px rgba(26,107,170,0.10);
+      --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+      --transition-slow: 0.4s cubic-bezier(0.4,0,0.2,1);
+      --max-w: 1200px;
+      --nav-h: 74px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--c-dark);
+      background: var(--c-white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul, ol { list-style: none; }
+    input, textarea, select { font-family: inherit; }
+
+    h1,h2,h3,h4,h5,h6 {
+      font-family: var(--font-display);
+      line-height: 1.2;
+      font-weight: 400;
+      color: var(--c-dark);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    /* ─────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 var(--c-border), 0 4px 24px rgba(13,27,46,0.06);
+      transition: all var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-item { position: relative; }
+
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--c-slate);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-link:hover {
+      color: var(--c-accent);
+      background: var(--c-primary-light);
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: var(--c-white);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      min-width: 220px;
+      padding: 0.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition);
+      pointer-events: none;
+    }
+
+    .nav-item:hover .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .nav-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--c-slate);
+      transition: all var(--transition);
+    }
+
+    .nav-dropdown a:hover {
+      background: var(--c-primary-light);
+      color: var(--c-accent);
+    }
+
+    .dd-icon {
+      width: 32px; height: 32px;
+      background: var(--c-light);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+
+    .nav-dropdown a:hover .dd-icon {
+      background: var(--c-accent-light);
+      color: var(--c-accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-login {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--c-slate);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      transition: all var(--transition);
+    }
+
+    .nav-login:hover {
+      color: var(--c-primary);
+      background: var(--c-primary-light);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+      letter-spacing: 0.01em;
+      transition: all var(--transition);
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .btn-accent {
+      background: var(--c-accent);
+      color: var(--c-white);
+      box-shadow: 0 4px 20px rgba(0,176,200,0.30);
+    }
+
+    .btn-accent:hover {
+      background: #009ab0;
+      box-shadow: 0 6px 28px rgba(0,176,200,0.40);
+      transform: translateY(-1px);
+    }
+
+    .btn-lg { padding: 0.9rem 2.25rem; font-size: 1rem; }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      transition: background var(--transition);
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--c-slate);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .nav-hamburger:hover { background: var(--c-primary-light); }
+
+    /* ─────────────────────────────────────────────
+       MAIN CONTENT AREA
+    ───────────────────────────────────────────── */
+    main {
+      flex: 1;
+      padding-top: var(--nav-h);
+    }
+
+    /* ─────────────────────────────────────────────
+       LOGIN SECTION
+    ───────────────────────────────────────────── */
+    .login-section {
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    /* LEFT PANEL — decorative */
+    .login-panel-left {
+      background: linear-gradient(145deg, var(--c-dark) 0%, var(--c-navy) 50%, #0f3060 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem;
+    }
+
+    /* Animated background orbs */
+    .login-orbs { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
+    .login-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+    }
+
+    .login-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #1a6baa 0%, transparent 70%);
+      top: -20%; left: -15%;
+      animation: orbFloat1 8s ease-in-out infinite alternate;
+    }
+
+    .login-orb-2 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, #00b0c8 0%, transparent 70%);
+      bottom: -10%; right: -10%;
+      animation: orbFloat2 10s ease-in-out infinite alternate;
+    }
+
+    .login-orb-3 {
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, #2dba6c 0%, transparent 70%);
+      top: 40%; right: 20%;
+      opacity: 0.18;
+      animation: orbFloat3 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbFloat1 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+    @keyframes orbFloat2 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-20px, -30px) scale(1.06); }
+    }
+    @keyframes orbFloat3 {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(15px, -20px); }
+    }
+
+    /* Grid overlay */
+    .login-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+      z-index: 0;
+    }
+
+    .login-panel-left-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .login-panel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      background: rgba(0,176,200,0.15);
+      border: 1px solid rgba(0,176,200,0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4dd6e8;
+      margin-bottom: 2rem;
+    }
+
+    .login-panel-badge span { width: 6px; height: 6px; border-radius: 50%; background: #00b0c8; animation: pulse 2s ease-in-out infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .login-panel-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      color: var(--c-white);
+      line-height: 1.18;
+      margin-bottom: 1.25rem;
+    }
+
+    .login-panel-headline em {
+      font-style: italic;
+      background: linear-gradient(135deg, #4dd6e8 0%, #00b0c8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-panel-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 360px;
+    }
+
+    /* Trust items on left panel */
+    .login-trust-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .login-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+    }
+
+    .login-trust-icon {
+      width: 36px; height: 36px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: #4dd6e8;
+    }
+
+    /* Testimonial card */
+    .login-testimonial {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .login-testimonial-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .login-testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .login-testimonial-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .login-testimonial-name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--c-white);
+    }
+
+    .login-testimonial-role {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Stars */
+    .login-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 0.75rem;
+      color: #f59e0b;
+    }
+
+    /* RIGHT PANEL — login form */
+    .login-panel-right {
+      background: var(--c-white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 3rem;
+      position: relative;
+    }
+
+    .login-form-wrap {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    /* Form header */
+    .login-form-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .login-form-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 2px;
+      background: var(--c-primary);
+      border-radius: 2px;
+    }
+
+    .login-form-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      color: var(--c-dark);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-form-subtitle {
+      font-size: 0.95rem;
+      color: var(--c-muted);
+      margin-bottom: 2.25rem;
+    }
+
+    .login-form-subtitle a {
+      color: var(--c-primary);
+      font-weight: 700;
+      transition: color var(--transition);
+    }
+
+    .login-form-subtitle a:hover { color: var(--c-accent); }
+
+    /* Social login */
+    .login-social-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .login-social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid var(--c-border);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--c-slate);
+      background: var(--c-white);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .login-social-btn:hover {
+      border-color: var(--c-primary);
+      color: var(--c-primary);
+      background: var(--c-primary-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Divider */
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--c-border);
+    }
+
+    .login-divider span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--c-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Form fields */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--c-dark);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+
+    .form-input-wrap {
+      position: relative;
+    }
+
+    .form-input-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--c-muted);
+      pointer-events: none;
+      transition: color var(--transition);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.75rem;
+      border: 1.5px solid var(--c-border);
+      border-radius: var(--radius-md);
+      font-size: 0.9375rem;
+      color: var(--c-dark);
+      background: var(--c-white);
+      transition: all var(--transition);
+      outline: none;
+      font-family: var(--font-body);
+    }
+
+    .form-input::placeholder { color: var(--c-muted); }
+
+    .form-input:focus {
+      border-color: var(--c-primary);
+      box-shadow: 0 0 0 3px rgba(26,107,170,0.12);
+    }
+
+    .form-input:focus + .form-input-icon,
+    .form-input-wrap:focus-within .form-input-icon {
+      color: var(--c-primary);
+    }
+
+    /* Password toggle */
+    .form-input-wrap .pw-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--c-muted);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      transition: color var(--transition);
+    }
+
+    .form-input-wrap .pw-toggle:hover { color: var(--c-primary); }
+
+    .form-input.has-toggle { padding-right: 3rem; }
+
+    /* Remember / forgot row */
+    .login-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-remember {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: var(--c-slate);
+      font-weight: 600;
+    }
+
+    .login-remember input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--c-primary);
+      cursor: pointer;
+    }
+
+    .login-forgot {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--c-primary);
+      transition: color var(--transition);
+    }
+
+    .login-forgot:hover { color: var(--c-accent); }
+
+    /* Submit btn */
+    .btn-login {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, var(--c-primary) 0%, #1880cc 100%);
+      color: var(--c-white);
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(26,107,170,0.30);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -130%;
+      width: 55%; height: 160%;
+      background: linear-gradient(108deg, transparent 15%, rgba(255,255,255,0.22) 50%, transparent 85%);
+      transform: skewX(-18deg);
+      transition: left 0.58s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .btn-login:hover::before { left: 140%; }
+
+    .btn-login:hover {
+      background: linear-gradient(135deg, var(--c-primary-dark) 0%, var(--c-primary) 100%);
+      box-shadow: 0 6px 28px rgba(26,107,170,0.42);
+      transform: translateY(-1px);
+    }
+
+    .btn-login:active { transform: translateY(1px); }
+
+    .btn-login-spinner {
+      display: none;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .btn-login.loading .btn-login-text { display: none; }
+    .btn-login.loading .btn-login-spinner { display: block; }
+
+    /* HIPAA badge row */
+    .login-hipaa-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.75rem;
+      color: var(--c-muted);
+    }
+
+    .hipaa-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      background: var(--c-primary-light);
+      border: 1px solid rgba(26,107,170,0.2);
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--c-primary);
+    }
+
+    /* Error message */
+    .form-error {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: #fff1f1;
+      border: 1px solid #fca5a5;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      color: #dc2626;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-error.show { display: flex; }
+
+    /* ─────────────────────────────────────────────
+       FADE IN UP ANIMATION
+    ───────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .fade-up.fu-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up[data-delay="0.1"] { transition-delay: 0.1s; }
+    .fade-up[data-delay="0.2"] { transition-delay: 0.2s; }
+    .fade-up[data-delay="0.3"] { transition-delay: 0.3s; }
+    .fade-up[data-delay="0.4"] { transition-delay: 0.4s; }
+    .fade-up[data-delay="0.5"] { transition-delay: 0.5s; }
+    .fade-up[data-delay="0.6"] { transition-delay: 0.6s; }
+    .fade-up[data-delay="0.7"] { transition-delay: 0.7s; }
+    .fade-up[data-delay="0.8"] { transition-delay: 0.8s; }
+
+    /* Mouse follow cursor */
+    #cv-cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle at center, rgba(26,107,170,0.12) 0%, rgba(0,176,200,0.06) 40%, transparent 70%);
+      will-change: transform;
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    /* Page transition */
+    #page-transition {
+      position: fixed; inset: 0;
+      background: var(--c-dark);
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #page-transition.pt-in  { opacity: 1; }
+    #page-transition.pt-clear { opacity: 0; }
+    #page-transition.pt-out { opacity: 1; pointer-events: all; }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .footer {
+      background: var(--c-dark);
+      color: rgba(255,255,255,0.65);
+      padding-top: 5rem;
+      padding-bottom: 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-brand { max-width: 280px; }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      text-decoration: none;
+    }
+
+    .footer-logo img {
+      height: 50px;
+      width: auto;
+      opacity: 0.85;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .footer-social-link {
+      width: 36px; height: 36px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      transition: all var(--transition);
+    }
+
+    .footer-social-link:hover {
+      background: rgba(0,176,200,0.15);
+      border-color: rgba(0,176,200,0.3);
+      color: var(--c-accent);
+    }
+
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 0.625rem; }
+
+    .footer-link {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+
+    .footer-link:hover { color: var(--c-accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .footer-hipaa {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hipaa-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.6rem;
+      background: rgba(45,186,108,0.15);
+      border: 1px solid rgba(45,186,108,0.3);
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #4ade80;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal a {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.35);
+      transition: color var(--transition);
+    }
+
+    .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .login-section { grid-template-columns: 1fr; }
+      .login-panel-left { display: none; }
+      .login-panel-right { padding: 3rem 2rem; min-height: calc(100vh - var(--nav-h)); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu, .nav-actions { display: none; }
+      .nav-hamburger { display: flex; }
+      #cv-cursor { display: none; }
+      .login-panel-right { padding: 2rem 1.25rem; }
+      .login-social-row { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+      #cv-cursor { display: none; }
+      .login-orb { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="nav" id="mainNav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo" aria-label="Cavient Home">
+          <img src="https://i.ibb.co.com/PZtbPWqY/Cavient.png" alt="Cavient" class="nav-logo-img" />
+        </a>
+
+        <!-- Menu -->
+        <ul class="nav-menu" role="list">
+
+          <!-- Platform dropdown -->
+          <li class="nav-item">
+            <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Platform
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="nav-dropdown" role="menu">
+              <a href="practice-management.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+                </span>
+                Practice Management
+              </a>
+              <a href="telehealth.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/></svg>
+                </span>
+                Telehealth
+              </a>
+              <a href="ehr.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+                </span>
+                Electronic Health Records
+              </a>
+              <a href="billing.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+                </span>
+                Billing &amp; Revenue
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item"><a href="#" class="nav-link">Specialties</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Resources
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="nav-dropdown" role="menu">
+              <a href="blog.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </span>
+                Blog &amp; Articles
+              </a>
+              <a href="help.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                </span>
+                Help Center
+              </a>
+              <a href="customer-stories.html" role="menuitem">
+                <span class="dd-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+                Customer Stories
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <!-- Actions -->
+        <div class="nav-actions">
+          <a href="login.html" class="nav-login" aria-current="page">Log In</a>
+          <a href="register.html" class="btn btn-accent btn-lg">Get Started Free</a>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN — LOGIN
+  ══════════════════════════════════════════════════════════ -->
+  <main>
+    <section class="login-section" aria-label="Login">
+
+      <!-- LEFT decorative panel -->
+      <div class="login-panel-left" aria-hidden="true">
+        <div class="login-orbs">
+          <div class="login-orb login-orb-1"></div>
+          <div class="login-orb login-orb-2"></div>
+          <div class="login-orb login-orb-3"></div>
+        </div>
+        <div class="login-grid-overlay"></div>
+
+        <div class="login-panel-left-content">
+          <div class="login-panel-badge">
+            <span></span>
+            HIPAA Secure Platform
+          </div>
+
+          <h2 class="login-panel-headline">
+            Healthcare care,<br>
+            <em>delivered smarter.</em>
+          </h2>
+
+          <p class="login-panel-sub">
+            Join over 5,000 providers using Cavient to streamline their practice and deliver exceptional care every day.
+          </p>
+
+          <ul class="login-trust-list">
+            <li class="login-trust-item">
+              <span class="login-trust-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              HIPAA &amp; SOC 2 Type II Compliant
+            </li>
+            <li class="login-trust-item">
+              <span class="login-trust-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+              99.9% Uptime Guaranteed
+            </li>
+            <li class="login-trust-item">
+              <span class="login-trust-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              256-bit AES Encryption
+            </li>
+            <li class="login-trust-item">
+              <span class="login-trust-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              24/7 Live Support Available
+            </li>
+          </ul>
+
+          <!-- Testimonial -->
+          <div class="login-testimonial">
+            <div class="login-stars" aria-label="5 stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="login-testimonial-text">
+              "Cavient cut our administrative time by 40%. The EHR and billing integration is seamless — I can focus entirely on my patients."
+            </p>
+            <div class="login-testimonial-author">
+              <div class="login-testimonial-avatar">S</div>
+              <div>
+                <div class="login-testimonial-name">Dr. Sarah Mitchell</div>
+                <div class="login-testimonial-role">Family Medicine · Sunrise Clinic</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — login form -->
+      <div class="login-panel-right">
+        <div class="login-form-wrap">
+
+          <!-- Eyebrow -->
+          <p class="login-form-eyebrow fade-up" data-delay="0.05">Welcome Back</p>
+
+          <!-- Title -->
+          <h1 class="login-form-title fade-up" data-delay="0.1">Sign in to<br>your account</h1>
+
+          <p class="login-form-subtitle fade-up" data-delay="0.15">
+            Don't have an account? <a href="register.html">Get started free</a>
+          </p>
+
+          <!-- Social Login -->
+          <div class="login-social-row fade-up" data-delay="0.2">
+            <button class="login-social-btn" type="button" aria-label="Continue with Google">
+              <!-- Google icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Continue with Google
+            </button>
+
+            <button class="login-social-btn" type="button" aria-label="Continue with Microsoft">
+              <!-- Microsoft icon -->
+              <svg width="16" height="16" viewBox="0 0 21 21" aria-hidden="true">
+                <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+                <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+                <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+                <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+              </svg>
+              Continue with Microsoft
+            </button>
+          </div>
+
+          <!-- OR Divider -->
+          <div class="login-divider fade-up" data-delay="0.25">
+            <span>or sign in with email</span>
+          </div>
+
+          <!-- Error message -->
+          <div class="form-error" id="loginError" role="alert" aria-live="polite">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="loginErrorMsg">Invalid email or password. Please try again.</span>
+          </div>
+
+          <!-- Form -->
+          <form id="loginForm" novalidate>
+
+            <!-- Email -->
+            <div class="form-group fade-up" data-delay="0.3">
+              <label class="form-label" for="email">Email address</label>
+              <div class="form-input-wrap">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                />
+                <span class="form-input-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </span>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group fade-up" data-delay="0.35">
+              <label class="form-label" for="password">Password</label>
+              <div class="form-input-wrap">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-input has-toggle"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  required
+                  aria-required="true"
+                />
+                <span class="form-input-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">
+                  <svg id="pwEye" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg id="pwEyeOff" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember / Forgot -->
+            <div class="login-row fade-up" data-delay="0.4">
+              <label class="login-remember">
+                <input type="checkbox" id="remember" name="remember" />
+                Remember me
+              </label>
+              <a href="#" class="login-forgot">Forgot password?</a>
+            </div>
+
+            <!-- Submit -->
+            <div class="fade-up" data-delay="0.45">
+              <button type="submit" class="btn-login" id="loginBtn" aria-label="Sign in">
+                <div class="btn-login-spinner" aria-hidden="true"></div>
+                <span class="btn-login-text">
+                  Sign In ➡️ <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> -->
+                  
+                </span>
+              </button>
+            </div>
+
+          </form>
+
+          <!-- HIPAA note -->
+          <div class="login-hipaa-row fade-up" data-delay="0.5">
+            <span class="hipaa-pill">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              HIPAA
+            </span>
+            Your data is encrypted and secure
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo" aria-label="Cavient home">
+            <img src="https://i.ibb.co.com/wHKjn31/Cavient-logo.png" alt="Cavient" />
+          </a>
+          <p class="footer-brand-desc">
+            The all-in-one healthcare practice management platform. Empowering providers to deliver exceptional care while running a thriving practice.
+          </p>
+          <div class="footer-social" aria-label="Cavient social media">
+            <a href="#" class="footer-social-link" aria-label="Follow Cavient on Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.732-8.855L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Follow Cavient on LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 23.2 24 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Follow Cavient on Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Platform -->
+        <div>
+          <h3 class="footer-col-title">Platform</h3>
+          <ul class="footer-links" role="list">
+            <li><a href="practice-management.html" class="footer-link">Practice Management</a></li>
+            <li><a href="telehealth.html" class="footer-link">Telehealth</a></li>
+            <li><a href="ehr.html" class="footer-link">Electronic Health Records</a></li>
+            <li><a href="billing.html" class="footer-link">Billing &amp; Revenue</a></li>
+            <li><a href="#" class="footer-link">Patient Portal</a></li>
+            <li><a href="#" class="footer-link">Analytics &amp; Reporting</a></li>
+          </ul>
+        </div>
+
+        <!-- Specialties -->
+        <div>
+          <h3 class="footer-col-title">Specialties</h3>
+          <ul class="footer-links" role="list">
+            <li><a href="#" class="footer-link">Mental Health</a></li>
+            <li><a href="#" class="footer-link">Primary Care</a></li>
+            <li><a href="#" class="footer-link">Home Health</a></li>
+            <li><a href="#" class="footer-link">Specialty Care</a></li>
+            <li><a href="#" class="footer-link">Group Practices</a></li>
+            <li><a href="#" class="footer-link">Substance Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-links" role="list">
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="help.html" class="footer-link">Help Center</a></li>
+            <li><a href="customer-stories.html" class="footer-link">Customer Stories</a></li>
+            <li><a href="#" class="footer-link">Webinars</a></li>
+            <li><a href="#" class="footer-link">API Docs</a></li>
+            <li><a href="#" class="footer-link">Status Page</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h3 class="footer-col-title">Company</h3>
+          <ul class="footer-links" role="list">
+            <li><a href="about.html" class="footer-link">About Cavient</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+            <li><a href="#" class="footer-link">Partners</a></li>
+            <li><a href="#" class="footer-link">Security</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer bottom -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Cavient, Inc. All rights reserved. Dev By Joy</p>
+        <div class="footer-hipaa" aria-label="HIPAA compliance status">
+          <span class="hipaa-badge" aria-label="HIPAA Compliant">HIPAA</span>
+          Compliant · Secure · Trusted
+        </div>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">BAA</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    'use strict';
+
+    /* ── Fade In Up on load ── */
+    (function () {
+      const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fadeEls = document.querySelectorAll('.fade-up');
+
+      if (REDUCED) {
+        fadeEls.forEach(el => el.classList.add('fu-visible'));
+        return;
+      }
+
+      // Trigger on page load using IntersectionObserver
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const delay = parseFloat(e.target.dataset.delay || 0) * 1000;
+            setTimeout(() => e.target.classList.add('fu-visible'), delay);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+      fadeEls.forEach(el => io.observe(el));
+    })();
+
+    /* ── Password toggle ── */
+    (function () {
+      const toggle = document.getElementById('pwToggle');
+      const input  = document.getElementById('password');
+      const eye    = document.getElementById('pwEye');
+      const eyeOff = document.getElementById('pwEyeOff');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', () => {
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        eye.style.display    = isHidden ? 'none'  : 'block';
+        eyeOff.style.display = isHidden ? 'block' : 'none';
+        toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+      });
+    })();
+
+    /* ── Login form handling ── */
+    (function () {
+      const form    = document.getElementById('loginForm');
+      const btn     = document.getElementById('loginBtn');
+      const errBox  = document.getElementById('loginError');
+      const errMsg  = document.getElementById('loginErrorMsg');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errBox.classList.remove('show');
+        btn.classList.add('loading');
+
+        const email    = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        // Basic validation
+        if (!email || !password) {
+          setTimeout(() => {
+            btn.classList.remove('loading');
+            errMsg.textContent = 'Please enter your email and password.';
+            errBox.classList.add('show');
+          }, 400);
+          return;
+        }
+
+        // Simulate auth (replace with real API call)
+        setTimeout(() => {
+          btn.classList.remove('loading');
+          // Simulated failure — replace with real redirect on success
+          errMsg.textContent = 'Invalid email or password. Please try again.';
+          errBox.classList.add('show');
+
+          // Shake inputs
+          ['email', 'password'].forEach(id => {
+            const el = document.getElementById(id);
+            el.style.borderColor = '#dc2626';
+            el.style.animation = 'none';
+            requestAnimationFrame(() => {
+              el.style.animation = 'shake 0.4s ease';
+            });
+            el.addEventListener('input', () => {
+              el.style.borderColor = '';
+              el.style.animation = '';
+            }, { once: true });
+          });
+        }, 1200);
+      });
+    })();
+
+    /* ── Shake animation ── */
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%,100% { transform: translateX(0); }
+        20%      { transform: translateX(-6px); }
+        40%      { transform: translateX(6px); }
+        60%      { transform: translateX(-4px); }
+        80%      { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    /* ── Mouse follow cursor ── */
+    (function () {
+      const IS_TOUCH = window.matchMedia('(hover: none)').matches;
+      const REDUCED  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (IS_TOUCH || REDUCED) return;
+      const cursor = document.getElementById('cv-cursor');
+      if (!cursor) return;
+      let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      let tx = cx, ty = cy;
+      document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+      (function loop() {
+        cx += (tx - cx) * 0.09;
+        cy += (ty - cy) * 0.09;
+        cursor.style.transform = `translate(${cx - 200}px, ${cy - 200}px)`;
+        requestAnimationFrame(loop);
+      })();
+    })();
+
+    /* ── Page transition ── */
+    (function () {
+      const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (REDUCED) return;
+      const overlay = document.getElementById('page-transition');
+      if (!overlay) return;
+      overlay.classList.add('pt-in');
+      requestAnimationFrame(() => {
+        overlay.classList.add('pt-clear');
+        setTimeout(() => overlay.classList.remove('pt-in', 'pt-clear'), 500);
+      });
+      document.addEventListener('click', e => {
+        const a = e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') ||
+            href.startsWith('mailto') || a.target === '_blank') return;
+        e.preventDefault();
+        overlay.classList.add('pt-out');
+        setTimeout(() => { window.location.href = href; }, 380);
+      });
+    })();
+
+    /* ── Nav scroll behaviour ── */
+    (function () {
+      const nav = document.getElementById('mainNav');
+      if (!nav) return;
+      const onScroll = () => {
+        if (window.scrollY > 20) nav.classList.add('nav-scrolled');
+        else nav.classList.remove('nav-scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+</body>
+</html>

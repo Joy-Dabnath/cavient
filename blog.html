@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6baa'/><circle cx='16' cy='16' r='6' fill='%2300b0c8'/></svg>"/>
+  <title>Blog — Cavient</title>
+</head>
+<body>
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+<nav class="nav nav-transparent" id="mainNav" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Cavient Home">
+        <img src="https://i.ibb.co.com/PZtbPWqY/Cavient.png" alt="Cavient" class="nav-logo-img" />
+      </a>
+
+      <!-- Menu -->
+      <ul class="nav-menu" role="list">
+
+        <!-- Platform dropdown -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="practice-management.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+              </span>
+              Practice Management
+            </a>
+            <a href="telehealth.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/><path d="M12 12v-2M12 16v2"/></svg>
+              </span>
+              Telehealth
+            </a>
+            <a href="ehr.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+              </span>
+              Electronic Health Records
+            </a>
+            <a href="billing.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+              </span>
+              Billing & Revenue
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="index.html#specialties" class="nav-link">Specialties</a></li>
+        <li class="nav-item"><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="blog.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </span>
+              Blog &amp; Articles
+            </a>
+            <a href="help.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              </span>
+              Help Center
+            </a>
+            <a href="customer-stories.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              Customer Stories
+            </a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login" target="_blank" rel="noopener">Log In</a>
+        <button><a href="register.html" target="_blank" rel="noopener" class="btn btn-accent btn-lg magnetic">Get Started Free</a></button>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<section style="background:var(--c-dark);padding:140px 0 80px;position:relative;overflow:hidden;text-align:center;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 40%,rgba(26,107,170,0.18) 0%,transparent 70%);"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+  <div class="container" style="position:relative;">
+    <div class="section-label fade-up" style="color:var(--c-accent);justify-content:center;margin:0 auto var(--space-5);">Insights &amp; Resources</div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;color:white;line-height:1.15;margin-bottom:var(--space-5);">The Cavient <span style="color:var(--c-accent);">Blog</span></h1>
+    <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto;line-height:1.75;">Clinical insights, billing guides, compliance updates, and practice growth strategies — written by healthcare operators for healthcare operators.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);">
+      
+      <div class="animate-on-scroll" style="animation-delay:0.0s;background:white;border:1px solid var(--c-border);border-radius:16px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;">
+        <div style="height:160px;background:linear-gradient(135deg,var(--c-dark),var(--c-navy));display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(26,107,170,0.3);border:2px solid rgba(0,176,200,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:white;">CB</div>
+          <span style="position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-accent);background:rgba(0,176,200,0.12);border:1px solid rgba(0,176,200,0.2);padding:3px 10px;border-radius:100px;">Clinical AI</span>
+        </div>
+        <div style="padding:var(--space-6);">
+          <p style="font-size:11px;color:var(--c-muted);margin-bottom:var(--space-3);">May 15, 2026</p>
+          <h3 style="font-size:1rem;font-weight:700;color:var(--c-dark);line-height:1.4;margin-bottom:var(--space-3);">How AI is Reducing Documentation Time for Mental Health Providers</h3>
+          <p style="font-size:0.875rem;color:var(--c-slate);line-height:1.65;margin-bottom:var(--space-5);">Discover how Cavient's AI-assisted note generation is helping therapists reclaim 2+ hours per day previously spent on progress notes and treatment plans.</p>
+          <a href="#" style="font-size:0.875rem;font-weight:700;color:var(--c-primary);">Read Article →</a>
+        </div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.07s;background:white;border:1px solid var(--c-border);border-radius:16px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;">
+        <div style="height:160px;background:linear-gradient(135deg,var(--c-dark),var(--c-navy));display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(26,107,170,0.3);border:2px solid rgba(0,176,200,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:white;">RN</div>
+          <span style="position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-accent);background:rgba(0,176,200,0.12);border:1px solid rgba(0,176,200,0.2);padding:3px 10px;border-radius:100px;">Billing & Revenue</span>
+        </div>
+        <div style="padding:var(--space-6);">
+          <p style="font-size:11px;color:var(--c-muted);margin-bottom:var(--space-3);">May 8, 2026</p>
+          <h3 style="font-size:1rem;font-weight:700;color:var(--c-dark);line-height:1.4;margin-bottom:var(--space-3);">The Complete Guide to Telehealth Billing in 2026</h3>
+          <p style="font-size:0.875rem;color:var(--c-slate);line-height:1.65;margin-bottom:var(--space-5);">Everything you need to know about billing for telehealth encounters — CPT codes, parity laws, CMS updates, and how to maximise reimbursement for virtual care.</p>
+          <a href="#" style="font-size:0.875rem;font-weight:700;color:var(--c-primary);">Read Article →</a>
+        </div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.14s;background:white;border:1px solid var(--c-border);border-radius:16px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;">
+        <div style="height:160px;background:linear-gradient(135deg,var(--c-dark),var(--c-navy));display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(26,107,170,0.3);border:2px solid rgba(0,176,200,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:white;">JK</div>
+          <span style="position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-accent);background:rgba(0,176,200,0.12);border:1px solid rgba(0,176,200,0.2);padding:3px 10px;border-radius:100px;">Compliance</span>
+        </div>
+        <div style="padding:var(--space-6);">
+          <p style="font-size:11px;color:var(--c-muted);margin-bottom:var(--space-3);">Apr 30, 2026</p>
+          <h3 style="font-size:1rem;font-weight:700;color:var(--c-dark);line-height:1.4;margin-bottom:var(--space-3);">ONC Certification Explained: What It Means for Your EHR</h3>
+          <p style="font-size:0.875rem;color:var(--c-slate);line-height:1.65;margin-bottom:var(--space-5);">We break down what ONC certification means, why it matters for your practice, and how Cavient's certified EHR keeps you on the right side of federal requirements.</p>
+          <a href="#" style="font-size:0.875rem;font-weight:700;color:var(--c-primary);">Read Article →</a>
+        </div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.21000000000000002s;background:white;border:1px solid var(--c-border);border-radius:16px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;">
+        <div style="height:160px;background:linear-gradient(135deg,var(--c-dark),var(--c-navy));display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(26,107,170,0.3);border:2px solid rgba(0,176,200,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:white;">LM</div>
+          <span style="position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-accent);background:rgba(0,176,200,0.12);border:1px solid rgba(0,176,200,0.2);padding:3px 10px;border-radius:100px;">Practice Growth</span>
+        </div>
+        <div style="padding:var(--space-6);">
+          <p style="font-size:11px;color:var(--c-muted);margin-bottom:var(--space-3);">Apr 22, 2026</p>
+          <h3 style="font-size:1rem;font-weight:700;color:var(--c-dark);line-height:1.4;margin-bottom:var(--space-3);">5 Signs Your Practice Needs a Revenue Cycle Overhaul</h3>
+          <p style="font-size:0.875rem;color:var(--c-slate);line-height:1.65;margin-bottom:var(--space-5);">From rising denial rates to growing days-in-AR — these five warning signs indicate it's time to rethink your revenue cycle management strategy.</p>
+          <a href="#" style="font-size:0.875rem;font-weight:700;color:var(--c-primary);">Read Article →</a>
+        </div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.28s;background:white;border:1px solid var(--c-border);border-radius:16px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;">
+        <div style="height:160px;background:linear-gradient(135deg,var(--c-dark),var(--c-navy));display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(26,107,170,0.3);border:2px solid rgba(0,176,200,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:white;">AK</div>
+          <span style="position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-accent);background:rgba(0,176,200,0.12);border:1px solid rgba(0,176,200,0.2);padding:3px 10px;border-radius:100px;">Billing & Revenue</span>
+        </div>
+        <div style="padding:var(--space-6);">
+          <p style="font-size:11px;color:var(--c-muted);margin-bottom:var(--space-3);">Apr 14, 2026</p>
+          <h3 style="font-size:1rem;font-weight:700;color:var(--c-dark);line-height:1.4;margin-bottom:var(--space-3);">Group Therapy Billing: A Step-by-Step Guide</h3>
+          <p style="font-size:0.875rem;color:var(--c-slate);line-height:1.65;margin-bottom:var(--space-5);">Group therapy billing is notoriously complex. This guide walks through proper CPT code usage, time-based billing rules, and common denial pitfalls.</p>
+          <a href="#" style="font-size:0.875rem;font-weight:700;color:var(--c-primary);">Read Article →</a>
+        </div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.35000000000000003s;background:white;border:1px solid var(--c-border);border-radius:16px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;">
+        <div style="height:160px;background:linear-gradient(135deg,var(--c-dark),var(--c-navy));display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(26,107,170,0.3);border:2px solid rgba(0,176,200,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:white;">TB</div>
+          <span style="position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-accent);background:rgba(0,176,200,0.12);border:1px solid rgba(0,176,200,0.2);padding:3px 10px;border-radius:100px;">Compliance</span>
+        </div>
+        <div style="padding:var(--space-6);">
+          <p style="font-size:11px;color:var(--c-muted);margin-bottom:var(--space-3);">Apr 6, 2026</p>
+          <h3 style="font-size:1rem;font-weight:700;color:var(--c-dark);line-height:1.4;margin-bottom:var(--space-3);">HIPAA Compliance in 2026: The Updated Security Rule</h3>
+          <p style="font-size:0.875rem;color:var(--c-slate);line-height:1.65;margin-bottom:var(--space-5);">The first major HIPAA Security Rule update since 2013 introduces MFA requirements and new BAA obligations. Here's what your practice needs to know.</p>
+          <a href="#" style="font-size:0.875rem;font-weight:700;color:var(--c-primary);">Read Article →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="Cavient home">
+          <!-- <img src="https://i.ibb.co.com/s8JzNLp/Cavient.png"> -->
+          <img style="width: auto; height: 50px;" src="https://i.ibb.co.com/wHKjn31/Cavient-logo.png">
+        </a>
+        <p class="footer-brand-desc">
+          The all-in-one healthcare practice management platform. Empowering providers to deliver exceptional care while running a thriving practice.
+        </p>
+        <div class="footer-social" aria-label="Cavient social media">
+          <!-- Twitter/X -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.732-8.855L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div>
+        <h3 class="footer-col-title">Platform</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="practice-management.html" class="footer-link">Practice Management</a></li>
+          <li><a href="telehealth.html" class="footer-link">Telehealth</a></li>
+          <li><a href="ehr.html" class="footer-link">Electronic Health Records</a></li>
+          <li><a href="billing.html" class="footer-link">Billing &amp; Revenue</a></li>
+          <li><a href="#" class="footer-link">Patient Portal</a></li>
+          <li><a href="#" class="footer-link">Analytics &amp; Reporting</a></li>
+        </ul>
+      </div>
+
+      <!-- Specialties -->
+      <div>
+        <h3 class="footer-col-title">Specialties</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#" class="footer-link">Mental Health</a></li>
+          <li><a href="#" class="footer-link">Primary Care</a></li>
+          <li><a href="#" class="footer-link">Home Health</a></li>
+          <li><a href="#" class="footer-link">Specialty Care</a></li>
+          <li><a href="#" class="footer-link">Group Practices</a></li>
+          <li><a href="#" class="footer-link">Substance Use</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="footer-col-title">Resources</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="blog.html" class="footer-link">Blog</a></li>
+          <li><a href="help.html" class="footer-link">Help Center</a></li>
+          <li><a href="customer-stories.html" class="footer-link">Customer Stories</a></li>
+          <li><a href="blog.html#webinars" class="footer-link">Webinars</a></li>
+          <li><a href="#" class="footer-link">API Docs</a></li>
+          <li><a href="#" class="footer-link">Status Page</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="about.html" class="footer-link">About Cavient</a></li>
+          <li><a href="https://cavient.com/careers" class="footer-link" target="_blank">Careers</a></li>
+          <li><a href="about.html#press" class="footer-link">Press</a></li>
+          <li><a href="https://cavient.com/contact" class="footer-link" target="_blank">Contact Us</a></li>
+          <li><a href="#" class="footer-link">Partners</a></li>
+          <li><a href="#" class="footer-link">Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Cavient, Inc. All rights reserved. Dev By Joy</p>
+      <div class="footer-hipaa" aria-label="HIPAA compliance status">
+        <span class="hipaa-badge" aria-label="HIPAA Compliant">HIPAA</span>
+        Compliant · Secure · Trusted
+      </div>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">BAA</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

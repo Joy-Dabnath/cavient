@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cavient Practice Management — Intelligent scheduling, patient management, and operational tools built for modern healthcare practices." />
+  <title>Practice Management — Cavient</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6baa'/><path d='M8 16 C8 11.6 11.6 8 16 8 S24 11.6 24 16 S20.4 24 16 24' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='16' cy='16' r='3' fill='%2300b0c8'/></svg>" />
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page-specific overrides for sub-pages ── */
+    .page-hero {
+      position: relative;
+      background: var(--c-dark);
+      padding: 160px 0 100px;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(26,107,170,0.25) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 50% at 10% 80%, rgba(0,176,200,0.12) 0%, transparent 60%);
+    }
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+    .page-hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(0,176,200,0.12);
+      border: 1px solid rgba(0,176,200,0.25);
+      color: var(--c-accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: var(--space-5);
+    }
+    .page-hero-label svg { width: 12px; height: 12px; }
+    .page-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--c-white);
+      margin-bottom: var(--space-5);
+    }
+    .page-hero-title .accent { color: var(--c-accent); }
+    .page-hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+      max-width: 500px;
+    }
+    .page-hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+    .page-hero-stats {
+      display: flex;
+      gap: var(--space-8);
+      margin-top: var(--space-10);
+      padding-top: var(--space-8);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .page-hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--c-white);
+      line-height: 1;
+    }
+    .page-hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    /* ── Scheduling Mockup ── */
+    .sched-mockup {
+      background: #111827;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .sched-topbar {
+      background: #0f172a;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .sched-topbar-dots { display: flex; gap: 6px; }
+    .sched-topbar-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .sched-topbar-dot:nth-child(1) { background: #ef4444; }
+    .sched-topbar-dot:nth-child(2) { background: #f59e0b; }
+    .sched-topbar-dot:nth-child(3) { background: #22c55e; }
+    .sched-topbar-title {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+    .sched-body {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+    .sched-sidebar {
+      background: #0f172a;
+      padding: 20px 16px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .sched-sidebar-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+    .sched-provider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    .sched-provider.active { background: rgba(26,107,170,0.2); }
+    .sched-provider-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .sched-provider-name { font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 500; }
+    .sched-provider-role { font-size: 10px; color: rgba(255,255,255,0.35); }
+    .sched-main { padding: 20px; }
+    .sched-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .sched-date {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+    }
+    .sched-nav { display: flex; gap: 6px; }
+    .sched-nav-btn {
+      width: 24px; height: 24px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sched-nav-btn svg { width: 12px; height: 12px; color: rgba(255,255,255,0.5); }
+    .sched-time-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sched-time-row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+    .sched-time-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      text-align: right;
+    }
+    .sched-slot {
+      height: 34px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .sched-slot.empty {
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.07);
+    }
+    .sched-slot.booked-blue { background: rgba(26,107,170,0.3); color: #60a5fa; border: 1px solid rgba(26,107,170,0.4); }
+    .sched-slot.booked-teal { background: rgba(0,176,200,0.2); color: #22d3ee; border: 1px solid rgba(0,176,200,0.3); }
+    .sched-slot.booked-green { background: rgba(45,186,108,0.2); color: #4ade80; border: 1px solid rgba(45,186,108,0.3); }
+    .sched-slot.booked-amber { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+    .sched-slot-info { display: flex; flex-direction: column; }
+    .sched-slot-name { font-weight: 600; font-size: 10.5px; }
+    .sched-slot-type { font-weight: 400; font-size: 9.5px; opacity: 0.7; }
+
+    /* ── Section styles ── */
+    .features-alt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .feature-alt-card {
+      background: var(--c-white);
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: var(--space-7);
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-alt-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .feature-alt-card:hover {
+      box-shadow: 0 12px 40px rgba(26,107,170,0.1);
+      transform: translateY(-4px);
+      border-color: rgba(26,107,170,0.2);
+    }
+    .feature-alt-card:hover::after { transform: scaleX(1); }
+    .feature-alt-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-5);
+    }
+    .feature-alt-icon svg { width: 24px; height: 24px; }
+    .feature-alt-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--c-dark);
+      margin-bottom: var(--space-3);
+    }
+    .feature-alt-card p {
+      font-size: 0.9rem;
+      color: var(--c-slate);
+      line-height: 1.65;
+    }
+
+    /* ── Workflow / How it works ── */
+    .workflow-section {
+      background: var(--c-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .workflow-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(0,176,200,0.08) 0%, transparent 70%);
+    }
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      position: relative;
+    }
+    .workflow-steps { display: flex; flex-direction: column; gap: var(--space-6); }
+    .workflow-step {
+      display: flex;
+      gap: var(--space-5);
+      align-items: flex-start;
+      padding: var(--space-6);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: background 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+    .workflow-step:hover {
+      background: rgba(26,107,170,0.1);
+      border-color: rgba(26,107,170,0.25);
+    }
+    .workflow-step-num {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .workflow-step-content h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--c-white);
+      margin-bottom: var(--space-2);
+    }
+    .workflow-step-content p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+    }
+
+    /* ── Panel UI mockup (for workflow) ── */
+    .panel-mockup {
+      background: #111827;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .panel-topbar {
+      background: #0f172a;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .panel-dot.red { background: #ef4444; }
+    .panel-dot.yellow { background: #f59e0b; }
+    .panel-dot.green { background: #22c55e; }
+    .panel-title { font-size: 11px; color: rgba(255,255,255,0.35); margin-left: auto; margin-right: auto; }
+    .panel-body { padding: 20px; }
+    .panel-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .panel-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .panel-stat-val {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    .panel-stat-lbl { font-size: 9px; color: rgba(255,255,255,0.35); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .panel-table-head {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      padding: 6px 10px;
+      margin-bottom: 4px;
+    }
+    .panel-table-head span { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .panel-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      padding: 9px 10px;
+      border-radius: 8px;
+      align-items: center;
+      margin-bottom: 3px;
+    }
+    .panel-row:hover { background: rgba(255,255,255,0.04); }
+    .panel-row-name { font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.85); }
+    .panel-row-meta { font-size: 10px; color: rgba(255,255,255,0.35); }
+    .panel-row-val { font-size: 11px; color: rgba(255,255,255,0.7); }
+    .panel-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+    .pill-green { background: rgba(45,186,108,0.15); color: #4ade80; }
+    .pill-blue { background: rgba(26,107,170,0.2); color: #60a5fa; }
+    .pill-amber { background: rgba(245,158,11,0.15); color: #fbbf24; }
+
+    /* ── Integrations row ── */
+    .integrations-strip {
+      background: var(--c-light);
+      padding: var(--space-12) 0;
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .integrations-strip-inner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .integrations-strip-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      white-space: nowrap;
+    }
+    .integration-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--c-border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--c-slate);
+      white-space: nowrap;
+    }
+    .integration-chip-icon {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── CTA section ── */
+    .page-cta {
+      background: linear-gradient(135deg, var(--c-primary-dark) 0%, #0d3d6b 50%, #06253f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(0,176,200,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 20%, rgba(255,255,255,0.04) 0%, transparent 60%);
+    }
+    .page-cta-inner {
+      position: relative;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .page-cta-inner .section-title { color: var(--c-white); }
+    .page-cta-inner .section-subtitle { color: rgba(255,255,255,0.65); }
+    .page-cta-actions {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      margin-top: var(--space-8);
+    }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      height: 48px;
+      padding: 0 var(--space-6);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--c-white);
+      transition: all 0.2s;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+    /* ── Testimonial strip ── */
+    .testimonial-strip {
+      background: var(--c-light);
+    }
+    .testimonial-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+    .testimonial-mini {
+      background: white;
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: var(--space-7);
+    }
+    .testimonial-mini-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: var(--space-4);
+      color: #f59e0b;
+    }
+    .testimonial-mini-stars svg { width: 14px; height: 14px; }
+    .testimonial-mini-quote {
+      font-size: 0.9rem;
+      color: var(--c-slate);
+      line-height: 1.65;
+      margin-bottom: var(--space-5);
+    }
+    .testimonial-mini-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .testimonial-mini-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+    }
+    .testimonial-mini-name { font-size: 0.88rem; font-weight: 700; color: var(--c-dark); }
+    .testimonial-mini-role { font-size: 0.78rem; color: var(--c-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .page-hero-inner { grid-template-columns: 1fr; gap: var(--space-10); }
+      .page-hero-subtitle { max-width: 100%; }
+      .features-alt-grid { grid-template-columns: 1fr 1fr; }
+      .workflow-grid { grid-template-columns: 1fr; }
+      .testimonial-mini-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 0 70px; }
+      .features-alt-grid { grid-template-columns: 1fr; }
+      .page-hero-stats { flex-wrap: wrap; gap: var(--space-5); }
+      .sched-body { grid-template-columns: 1fr; }
+      .sched-sidebar { display: none; }
+      .panel-stat-row { grid-template-columns: 1fr 1fr; }
+      .integrations-strip-inner { justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAVIGATION
+     ══════════════════════════════════════════════════════════ -->
+<nav class="nav nav-transparent" id="mainNav" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Cavient Home">
+        <img src="https://i.ibb.co.com/PZtbPWqY/Cavient.png" alt="Cavient" class="nav-logo-img" />
+      </a>
+
+      <!-- Menu -->
+      <ul class="nav-menu" role="list">
+
+        <!-- Platform dropdown -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="practice-management.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+              </span>
+              Practice Management
+            </a>
+            <a href="telehealth.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/><path d="M12 12v-2M12 16v2"/></svg>
+              </span>
+              Telehealth
+            </a>
+            <a href="ehr.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+              </span>
+              Electronic Health Records
+            </a>
+            <a href="billing.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+              </span>
+              Billing & Revenue
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="index.html#specialties" class="nav-link">Specialties</a></li>
+        <li class="nav-item"><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="blog.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </span>
+              Blog &amp; Articles
+            </a>
+            <a href="help.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              </span>
+              Help Center
+            </a>
+            <a href="customer-stories.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              Customer Stories
+            </a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login" target="_blank" rel="noopener">Log In</a>
+        <button><a href="register.html" target="_blank" rel="noopener" class="btn btn-accent btn-lg magnetic">Get Started Free</a></button>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════════════════════ -->
+<section class="page-hero" aria-label="Practice Management hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-grid" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero-inner">
+
+      <!-- Content -->
+      <div class="page-hero-content animate-on-scroll">
+        <div class="page-hero-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+          Practice Management
+        </div>
+        <h1 class="page-hero-title text-reveal">
+          Run Your Practice<br>
+          Smarter, Not Harder
+        </h1>
+        <p class="page-hero-subtitle">
+          Cavient's practice management suite unifies scheduling, patient intake, staff coordination, and operational reporting — so your team spends less time on admin and more time delivering care.
+        </p>
+        <div class="page-hero-actions">
+          <a href="register.html" class="btn btn-primary btn-lg magnetic" target="_blank" rel="noopener">Start Free Trial</a>
+          <a href="#" class="btn btn-outline-light btn-lg">Watch Demo</a>
+        </div>
+        <div class="page-hero-stats">
+          <div>
+            <div class="page-hero-stat-value">68%</div>
+            <div class="page-hero-stat-label">Reduction in no-shows</div>
+          </div>
+          <div>
+            <div class="page-hero-stat-value">3.5×</div>
+            <div class="page-hero-stat-label">Faster patient intake</div>
+          </div>
+          <div>
+            <div class="page-hero-stat-value">12 hrs</div>
+            <div class="page-hero-stat-label">Saved per provider / week</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheduling Mockup -->
+      <div class="sched-mockup animate-on-scroll" aria-label="Appointment scheduling interface preview" aria-hidden="true">
+        <div class="sched-topbar">
+          <div class="sched-topbar-dots">
+            <div class="sched-topbar-dot"></div>
+            <div class="sched-topbar-dot"></div>
+            <div class="sched-topbar-dot"></div>
+          </div>
+          <span class="sched-topbar-title">Appointment Scheduler</span>
+          <div style="width:48px;"></div>
+        </div>
+        <div class="sched-body">
+          <!-- Sidebar: providers -->
+          <div class="sched-sidebar">
+            <div class="sched-sidebar-title">Providers</div>
+            <div class="sched-provider active">
+              <div class="sched-provider-avatar" style="background:linear-gradient(135deg,#1a6baa,#00b0c8)">DM</div>
+              <div>
+                <div class="sched-provider-name">Dr. Marcus</div>
+                <div class="sched-provider-role">Psychiatrist</div>
+              </div>
+            </div>
+            <div class="sched-provider">
+              <div class="sched-provider-avatar" style="background:linear-gradient(135deg,#2dba6c,#00b0c8)">SL</div>
+              <div>
+                <div class="sched-provider-name">Sarah Lee</div>
+                <div class="sched-provider-role">LCSW</div>
+              </div>
+            </div>
+            <div class="sched-provider">
+              <div class="sched-provider-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">JP</div>
+              <div>
+                <div class="sched-provider-name">James Park</div>
+                <div class="sched-provider-role">NP</div>
+              </div>
+            </div>
+            <div class="sched-provider">
+              <div class="sched-provider-avatar" style="background:linear-gradient(135deg,#7c3aed,#1a6baa)">AK</div>
+              <div>
+                <div class="sched-provider-name">A. Kumar</div>
+                <div class="sched-provider-role">Therapist</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main calendar -->
+          <div class="sched-main">
+            <div class="sched-header">
+              <span class="sched-date">Thursday, May 21</span>
+              <div class="sched-nav">
+                <div class="sched-nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div class="sched-nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+              </div>
+            </div>
+            <div class="sched-time-slots">
+              <div class="sched-time-row">
+                <span class="sched-time-label">8:00</span>
+                <div class="sched-slot booked-blue">
+                  <div class="sched-slot-info">
+                    <span class="sched-slot-name">Emma Collins</span>
+                    <span class="sched-slot-type">Initial Evaluation · 60 min</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">9:00</span>
+                <div class="sched-slot booked-teal">
+                  <div class="sched-slot-info">
+                    <span class="sched-slot-name">Robert Kim</span>
+                    <span class="sched-slot-type">Follow-Up · Telehealth</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">10:00</span>
+                <div class="sched-slot empty"></div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">11:00</span>
+                <div class="sched-slot booked-green">
+                  <div class="sched-slot-info">
+                    <span class="sched-slot-name">Maria Santos</span>
+                    <span class="sched-slot-type">Therapy Session · 45 min</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">12:00</span>
+                <div class="sched-slot empty" style="height:28px;opacity:0.5;"><span style="font-size:10px;color:rgba(255,255,255,0.3)">— Lunch Break —</span></div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">1:00</span>
+                <div class="sched-slot booked-amber">
+                  <div class="sched-slot-info">
+                    <span class="sched-slot-name">James Wong</span>
+                    <span class="sched-slot-type">Medication Mgmt · 30 min</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">2:00</span>
+                <div class="sched-slot booked-blue">
+                  <div class="sched-slot-info">
+                    <span class="sched-slot-name">Priya Nair</span>
+                    <span class="sched-slot-type">Group Therapy · 90 min</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sched-time-row">
+                <span class="sched-time-label">3:30</span>
+                <div class="sched-slot empty"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURES GRID
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="features-heading">
+  <div class="container">
+    <header class="section-header center animate-on-scroll">
+      <div class="section-label fade-up">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Core Capabilities
+      </div>
+      <h2 class="section-title fade-up" id="features-heading">Everything Your Practice Needs to Thrive</h2>
+      <p class="section-subtitle fade-up">From first patient contact to final billing, Cavient streamlines every step of practice operations with intelligent automation.</p>
+    </header>
+
+    <div class="features-alt-grid">
+
+      <!-- Intelligent Scheduling -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll">
+        <div class="feature-alt-icon" style="background:rgba(26,107,170,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+        </div>
+        <h3>Intelligent Scheduling</h3>
+        <p>Smart calendar that prevents double-booking, auto-fills cancellations from a waitlist, and sends automated reminders via SMS and email to reduce no-shows by up to 68%.</p>
+      </div>
+
+      <!-- Patient Intake -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.05s;">
+        <div class="feature-alt-icon" style="background:rgba(0,176,200,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Digital Patient Intake</h3>
+        <p>Patients complete intake forms digitally before their appointment. Insurance verification, consent forms, and health history collected automatically — zero paper, zero delay.</p>
+      </div>
+
+      <!-- Multi-Location -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.1s;">
+        <div class="feature-alt-icon" style="background:rgba(45,186,108,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Multi-Location Management</h3>
+        <p>Manage unlimited clinic locations from a single dashboard. Each site gets its own scheduling, staff, and reporting while sharing a unified patient record system.</p>
+      </div>
+
+      <!-- Staff & Resource Management -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.15s;">
+        <div class="feature-alt-icon" style="background:rgba(245,158,11,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Staff &amp; Resource Management</h3>
+        <p>Configure provider schedules, room assignments, and equipment bookings. Role-based permissions ensure every team member has exactly the access they need — nothing more.</p>
+      </div>
+
+      <!-- Automated Reminders -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.2s;">
+        <div class="feature-alt-icon" style="background:rgba(124,58,237,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <h3>Automated Reminders &amp; Follow-ups</h3>
+        <p>Configurable reminder workflows send appointment confirmations, follow-up care instructions, and reactivation campaigns to keep your schedule full and patients engaged.</p>
+      </div>
+
+      <!-- Analytics & Reporting -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="transition-delay:0.25s;">
+        <div class="feature-alt-icon" style="background:rgba(239,68,68,0.08);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Operational Analytics</h3>
+        <p>Track utilization rates, no-show patterns, revenue per visit, and provider productivity. Exportable reports for payroll, board meetings, or compliance submissions.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     WORKFLOW / HOW IT WORKS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section workflow-section" aria-labelledby="workflow-heading">
+  <div class="container">
+    <div class="workflow-grid">
+
+      <!-- Steps -->
+      <div class="animate-on-scroll">
+        <header class="section-header" style="margin-bottom:var(--space-8);">
+          <div class="section-label fade-up" style="color:var(--c-accent);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Streamlined Workflow
+          </div>
+          <h2 class="section-title fade-up" id="workflow-heading" style="color:var(--c-white);">From Booking to<br>Billing in Minutes</h2>
+          <p class="section-subtitle fade-up" style="color:rgba(255,255,255,0.6);">Cavient's workflow engine connects every step of the patient journey so nothing falls through the cracks.</p>
+        </header>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-step-content">
+              <h4>Patient Schedules Online</h4>
+              <p>Patients self-book through your branded portal or you schedule on their behalf. Insurance is verified in real time, and intake forms are sent immediately.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-step-content">
+              <h4>Intake Completed Digitally</h4>
+              <p>Demographics, consent forms, and clinical history are collected before the visit and auto-populated into the EHR — no scanning, no transcribing.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-step-content">
+              <h4>Provider Sees the Patient</h4>
+              <p>Provider arrives to a fully prepped chart. Clinical notes, treatment plans, and orders are created with AI-assisted templates — cutting documentation time by 50%.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-step-content">
+              <h4>Claims Filed Automatically</h4>
+              <p>Visit data flows directly to billing. Claims are scrubbed, submitted, and tracked — reducing denials and accelerating reimbursements to 2–5 business days.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel mockup -->
+      <div class="panel-mockup animate-on-scroll" aria-hidden="true">
+        <div class="panel-topbar">
+          <div class="panel-dot red"></div>
+          <div class="panel-dot yellow"></div>
+          <div class="panel-dot green"></div>
+          <span class="panel-title">Practice Dashboard</span>
+        </div>
+        <div class="panel-body">
+          <div class="panel-stat-row">
+            <div class="panel-stat">
+              <div class="panel-stat-val" style="color:#60a5fa;">24</div>
+              <div class="panel-stat-lbl">Today's Appts</div>
+            </div>
+            <div class="panel-stat">
+              <div class="panel-stat-val" style="color:#4ade80;">96%</div>
+              <div class="panel-stat-lbl">Attendance Rate</div>
+            </div>
+            <div class="panel-stat">
+              <div class="panel-stat-val" style="color:#fbbf24;">$12.4k</div>
+              <div class="panel-stat-lbl">Today's Revenue</div>
+            </div>
+          </div>
+
+          <!-- Mini bar chart -->
+          <div style="margin-bottom:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Weekly Appointments</div>
+            <div style="display:flex;align-items:flex-end;gap:6px;height:60px;">
+              <div style="flex:1;background:rgba(26,107,170,0.4);border-radius:4px 4px 0 0;height:65%;"></div>
+              <div style="flex:1;background:rgba(26,107,170,0.4);border-radius:4px 4px 0 0;height:80%;"></div>
+              <div style="flex:1;background:rgba(26,107,170,0.4);border-radius:4px 4px 0 0;height:55%;"></div>
+              <div style="flex:1;background:rgba(26,107,170,0.4);border-radius:4px 4px 0 0;height:90%;"></div>
+              <div style="flex:1;background:linear-gradient(180deg,#00b0c8,#1a6baa);border-radius:4px 4px 0 0;height:100%;"></div>
+              <div style="flex:1;background:rgba(255,255,255,0.08);border-radius:4px 4px 0 0;height:70%;border:1px dashed rgba(255,255,255,0.1);"></div>
+              <div style="flex:1;background:rgba(255,255,255,0.08);border-radius:4px 4px 0 0;height:60%;border:1px dashed rgba(255,255,255,0.1);"></div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:4px;">
+              <div style="flex:1;text-align:center;font-size:8.5px;color:rgba(255,255,255,0.2);">M</div>
+              <div style="flex:1;text-align:center;font-size:8.5px;color:rgba(255,255,255,0.2);">T</div>
+              <div style="flex:1;text-align:center;font-size:8.5px;color:rgba(255,255,255,0.2);">W</div>
+              <div style="flex:1;text-align:center;font-size:8.5px;color:rgba(255,255,255,0.2);">T</div>
+              <div style="flex:1;text-align:center;font-size:8.5px;color:#00b0c8;font-weight:700;">F</div>
+              <div style="flex:1;text-align:center;font-size:8.5px;color:rgba(255,255,255,0.1);">S</div>
+              <div style="flex:1;text-align:center;font-size:8.5px;color:rgba(255,255,255,0.1);">S</div>
+            </div>
+          </div>
+
+          <!-- Patient table -->
+          <div class="panel-table-head">
+            <span>Patient</span>
+            <span>Time</span>
+            <span>Type</span>
+            <span>Status</span>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">Emma Collins</div>
+              <div class="panel-row-meta">Dr. Marcus</div>
+            </div>
+            <div class="panel-row-val">8:00 AM</div>
+            <div class="panel-row-val">Eval</div>
+            <div><span class="panel-pill pill-green">✓ In Session</span></div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">Robert Kim</div>
+              <div class="panel-row-meta">Dr. Marcus</div>
+            </div>
+            <div class="panel-row-val">9:00 AM</div>
+            <div class="panel-row-val">Video</div>
+            <div><span class="panel-pill pill-blue">⬤ Telehealth</span></div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">Maria Santos</div>
+              <div class="panel-row-meta">Sarah Lee</div>
+            </div>
+            <div class="panel-row-val">11:00 AM</div>
+            <div class="panel-row-val">Therapy</div>
+            <div><span class="panel-pill pill-amber">⏰ Confirmed</span></div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">James Wong</div>
+              <div class="panel-row-meta">Dr. Marcus</div>
+            </div>
+            <div class="panel-row-val">1:00 PM</div>
+            <div class="panel-row-val">Med Mgmt</div>
+            <div><span class="panel-pill pill-amber">⏰ Confirmed</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section testimonial-strip" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <header class="section-header center animate-on-scroll">
+      <div class="section-label fade-up">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        What Practices Say
+      </div>
+      <h2 class="section-title fade-up" id="testimonials-heading">Trusted by 1,400+ Healthcare Providers</h2>
+    </header>
+    <div class="testimonial-mini-grid">
+      <div class="testimonial-mini animate-on-scroll">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">"We cut our no-show rate from 22% to under 5% in the first month. The automated reminder system pays for itself ten times over."</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#1a6baa,#00b0c8)">RH</div>
+          <div>
+            <div class="testimonial-mini-name">Dr. Rachel Hayes, MD</div>
+            <div class="testimonial-mini-role">Psychiatrist · Atlanta, GA</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-mini animate-on-scroll" style="transition-delay:0.1s;">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">"Managing 3 locations used to require a full-time coordinator. Now one person handles all scheduling from a single screen. It's genuinely remarkable."</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#2dba6c,#1a6baa)">MP</div>
+          <div>
+            <div class="testimonial-mini-name">Marcus Patterson</div>
+            <div class="testimonial-mini-role">Practice Administrator · Dallas, TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-mini animate-on-scroll" style="transition-delay:0.2s;">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">"Digital intake was a game-changer. Patients complete everything before they arrive, and our front desk actually has time to greet people now instead of pushing paper."</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#7c3aed,#1a6baa)">LJ</div>
+          <div>
+            <div class="testimonial-mini-name">Dr. Linda Johnson, LCSW</div>
+            <div class="testimonial-mini-role">Group Practice Owner · Chicago, IL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CTA
+     ══════════════════════════════════════════════════════════ -->
+<section class="section page-cta" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="page-cta-inner animate-on-scroll">
+      <div class="section-label fade-up" style="justify-content:center;color:rgba(255,255,255,0.6);margin-bottom:var(--space-4);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Get Started Today
+      </div>
+      <h2 class="section-title fade-up" id="cta-heading">Ready to Run a More Efficient Practice?</h2>
+      <p class="section-subtitle fade-up">Join 1,400+ practices that have streamlined operations, reduced no-shows, and grown revenue with Cavient. No contracts. Cancel anytime.</p>
+      <div class="page-cta-actions">
+        <a href="register.html" class="btn btn-accent btn-lg magnetic" target="_blank" rel="noopener">Start Free 30-Day Trial</a>
+        <button onclick="openDemoModal()" class="btn-outline-white btn-lg" type="button">Schedule a Demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="Cavient home">
+          <!-- <img src="https://i.ibb.co.com/s8JzNLp/Cavient.png"> -->
+          <img style="width: auto; height: 50px;" src="https://i.ibb.co.com/wHKjn31/Cavient-logo.png">
+        </a>
+        <p class="footer-brand-desc">
+          The all-in-one healthcare practice management platform. Empowering providers to deliver exceptional care while running a thriving practice.
+        </p>
+        <div class="footer-social" aria-label="Cavient social media">
+          <!-- Twitter/X -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.732-8.855L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div>
+        <h3 class="footer-col-title">Platform</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="practice-management.html" class="footer-link">Practice Management</a></li>
+          <li><a href="telehealth.html" class="footer-link">Telehealth</a></li>
+          <li><a href="ehr.html" class="footer-link">Electronic Health Records</a></li>
+          <li><a href="billing.html" class="footer-link">Billing &amp; Revenue</a></li>
+          <li><a href="#" class="footer-link">Patient Portal</a></li>
+          <li><a href="#" class="footer-link">Analytics &amp; Reporting</a></li>
+        </ul>
+      </div>
+
+      <!-- Specialties -->
+      <div>
+        <h3 class="footer-col-title">Specialties</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#" class="footer-link">Mental Health</a></li>
+          <li><a href="#" class="footer-link">Primary Care</a></li>
+          <li><a href="#" class="footer-link">Home Health</a></li>
+          <li><a href="#" class="footer-link">Specialty Care</a></li>
+          <li><a href="#" class="footer-link">Group Practices</a></li>
+          <li><a href="#" class="footer-link">Substance Use</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="footer-col-title">Resources</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="blog.html" class="footer-link">Blog</a></li>
+          <li><a href="help.html" class="footer-link">Help Center</a></li>
+          <li><a href="customer-stories.html" class="footer-link">Customer Stories</a></li>
+          <li><a href="blog.html#webinars" class="footer-link">Webinars</a></li>
+          <li><a href="#" class="footer-link">API Docs</a></li>
+          <li><a href="#" class="footer-link">Status Page</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="about.html" class="footer-link">About Cavient</a></li>
+          <li><a href="https://cavient.com/careers" class="footer-link" target="_blank">Careers</a></li>
+          <li><a href="about.html#press" class="footer-link">Press</a></li>
+          <li><a href="https://cavient.com/contact" class="footer-link" target="_blank">Contact Us</a></li>
+          <li><a href="#" class="footer-link">Partners</a></li>
+          <li><a href="#" class="footer-link">Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Cavient, Inc. All rights reserved. Dev By Joy</p>
+      <div class="footer-hipaa" aria-label="HIPAA compliance status">
+        <span class="hipaa-badge" aria-label="HIPAA Compliant">HIPAA</span>
+        Compliant · Secure · Trusted
+      </div>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">BAA</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cavient Billing & Revenue Cycle Management — Intelligent claims processing, automated insurance verification, ERA/EOB posting, and denial management to maximize practice revenue." />
+  <title>Billing &amp; Revenue Cycle Management — Cavient</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6baa'/><path d='M8 16 C8 11.6 11.6 8 16 8 S24 11.6 24 16 S20.4 24 16 24' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='16' cy='16' r='3' fill='%2300b0c8'/></svg>" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Hero ── */
+    .page-hero { position:relative; background:var(--c-dark); padding:160px 0 100px; overflow:hidden; }
+    .page-hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 65% 55% at 65% 35%, rgba(26,107,170,0.22) 0%, transparent 65%), radial-gradient(ellipse 40% 50% at 5% 75%, rgba(0,176,200,0.1) 0%, transparent 55%); }
+    .page-hero-grid { position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px); background-size:60px 60px; }
+    .page-hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16); align-items:center; }
+    .page-hero-label { display:inline-flex; align-items:center; gap:var(--space-2); background:rgba(0,176,200,0.12); border:1px solid rgba(0,176,200,0.25); color:var(--c-accent); font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 14px; border-radius:100px; margin-bottom:var(--space-5); }
+    .page-hero-label svg { width:12px; height:12px; }
+    .page-hero-title { font-family:var(--font-display); font-size:clamp(2.2rem,4.5vw,3.4rem); font-weight:700; line-height:1.15; color:var(--c-white); margin-bottom:var(--space-5); }
+    .page-hero-title .accent { color:var(--c-accent); }
+    .page-hero-subtitle { font-size:1.1rem; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:var(--space-8); max-width:500px; }
+    .page-hero-actions { display:flex; gap:var(--space-3); flex-wrap:wrap; }
+    .page-hero-stats { display:flex; gap:var(--space-8); margin-top:var(--space-10); padding-top:var(--space-8); border-top:1px solid rgba(255,255,255,0.08); }
+    .page-hero-stat-value { font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--c-white); line-height:1; }
+    .page-hero-stat-label { font-size:0.78rem; color:rgba(255,255,255,0.5); margin-top:4px; }
+
+    /* ── Billing Dashboard Mockup ── */
+    .billing-mockup { background:#0f1729; border-radius:18px; overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.06); }
+    .billing-topbar { background:#0c1220; padding:11px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .billing-dots { display:flex; gap:6px; }
+    .billing-dot { width:10px; height:10px; border-radius:50%; }
+    .billing-dot.r { background:#ef4444; }
+    .billing-dot.y { background:#f59e0b; }
+    .billing-dot.g { background:#22c55e; }
+    .billing-topbar-title { font-size:11px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:0.06em; }
+    .billing-topbar-badge { font-size:10px; font-weight:700; background:rgba(45,186,108,0.15); color:#4ade80; padding:2px 9px; border-radius:100px; }
+    .billing-body { padding:16px; }
+
+    /* Revenue summary strip */
+    .billing-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px; }
+    .billing-stat-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:11px 13px; }
+    .billing-stat-label { font-size:9.5px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+    .billing-stat-value { font-family:var(--font-display); font-size:1.25rem; font-weight:700; color:rgba(255,255,255,0.92); line-height:1; }
+    .billing-stat-delta { font-size:9px; font-weight:700; margin-top:3px; }
+    .billing-stat-delta.up { color:#4ade80; }
+    .billing-stat-delta.neutral { color:rgba(255,255,255,0.3); }
+
+    /* Revenue bar chart */
+    .billing-chart-wrap { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); border-radius:10px; padding:12px 14px; margin-bottom:12px; }
+    .billing-chart-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .billing-chart-title { font-size:10.5px; font-weight:700; color:rgba(255,255,255,0.7); }
+    .billing-chart-legend { display:flex; gap:12px; }
+    .billing-chart-legend-item { display:flex; align-items:center; gap:4px; font-size:9px; color:rgba(255,255,255,0.35); }
+    .billing-chart-legend-dot { width:8px; height:8px; border-radius:2px; }
+    .billing-bars { display:flex; align-items:flex-end; gap:6px; height:72px; }
+    .billing-bar-group { display:flex; gap:2px; align-items:flex-end; flex:1; }
+    .billing-bar { border-radius:3px 3px 0 0; flex:1; min-width:6px; }
+    .billing-bar.billed { background:linear-gradient(180deg,#1a6baa,#125490); }
+    .billing-bar.collected { background:linear-gradient(180deg,#00b0c8,#0090a8); }
+    .billing-bar-labels { display:flex; gap:6px; margin-top:5px; }
+    .billing-bar-month { font-size:8.5px; color:rgba(255,255,255,0.2); flex:1; text-align:center; }
+
+    /* Claims table */
+    .billing-claims-wrap { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); border-radius:10px; overflow:hidden; }
+    .billing-claims-header { display:flex; align-items:center; justify-content:space-between; padding:9px 12px; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .billing-claims-title { font-size:10px; font-weight:700; color:rgba(255,255,255,0.6); }
+    .billing-claims-action { font-size:9px; font-weight:700; color:var(--c-accent); cursor:pointer; }
+    .billing-claim-row { display:grid; grid-template-columns:1fr 60px 54px 58px; gap:6px; align-items:center; padding:7px 12px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:10px; }
+    .billing-claim-row:last-child { border-bottom:none; }
+    .billing-claim-patient { font-weight:600; color:rgba(255,255,255,0.75); }
+    .billing-claim-code { font-family:monospace; font-size:9px; color:rgba(255,255,255,0.35); }
+    .billing-claim-amt { font-weight:700; color:rgba(255,255,255,0.8); font-family:var(--font-display); font-size:11px; }
+    .claim-pill { font-size:8.5px; font-weight:700; padding:2px 7px; border-radius:100px; text-align:center; }
+    .claim-pill.paid { background:rgba(45,186,108,0.15); color:#4ade80; }
+    .claim-pill.pending { background:rgba(245,158,11,0.15); color:#fbbf24; }
+    .claim-pill.denied { background:rgba(239,68,68,0.15); color:#f87171; }
+    .claim-pill.submitted { background:rgba(26,107,170,0.2); color:#60a5fa; }
+
+    /* ── Features grid ── */
+    .features-alt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-6); }
+    .feature-alt-card { background:var(--c-white); border:1px solid var(--c-border); border-radius:16px; padding:var(--space-7); transition:box-shadow 0.3s,transform 0.3s,border-color 0.3s; position:relative; overflow:hidden; }
+    .feature-alt-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--c-primary),var(--c-accent)); transform:scaleX(0); transform-origin:left; transition:transform 0.3s ease; }
+    .feature-alt-card:hover { box-shadow:0 12px 40px rgba(26,107,170,0.1); transform:translateY(-4px); border-color:rgba(26,107,170,0.2); }
+    .feature-alt-card:hover::after { transform:scaleX(1); }
+    .feature-alt-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:var(--space-5); }
+    .feature-alt-icon svg { width:24px; height:24px; }
+    .feature-alt-card h3 { font-size:1.05rem; font-weight:700; color:var(--c-dark); margin-bottom:var(--space-3); }
+    .feature-alt-card p { font-size:0.9rem; color:var(--c-slate); line-height:1.65; }
+
+    /* ── Revenue Stats Band ── */
+    .revenue-stats-band { background:linear-gradient(135deg,var(--c-primary) 0%,#0d5a9c 50%,var(--c-accent) 100%); }
+    .revenue-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); text-align:center; }
+    .revenue-stat-value { font-family:var(--font-display); font-size:2.5rem; font-weight:700; color:white; line-height:1; margin-bottom:var(--space-2); }
+    .revenue-stat-label { font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.4; }
+
+    /* ── Workflow dark section ── */
+    .workflow-section { background:var(--c-dark); position:relative; overflow:hidden; }
+    .workflow-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 60% at 30% 50%,rgba(26,107,170,0.1) 0%,transparent 70%); }
+    .workflow-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16); align-items:center; position:relative; }
+    .workflow-steps { display:flex; flex-direction:column; gap:var(--space-5); }
+    .workflow-step { display:flex; gap:var(--space-4); align-items:flex-start; }
+    .workflow-step-num { width:38px; height:38px; border-radius:50%; background:rgba(26,107,170,0.25); border:1px solid rgba(26,107,170,0.4); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:0.95rem; font-weight:700; color:var(--c-accent); flex-shrink:0; }
+    .workflow-step-content h4 { font-size:0.95rem; font-weight:700; color:white; margin-bottom:var(--space-2); }
+    .workflow-step-content p { font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6; }
+
+    /* ERA/EOB Processing mockup in dark section */
+    .era-mockup { background:#111827; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.07); box-shadow:0 24px 60px rgba(0,0,0,0.4); }
+    .era-header { background:#0c1220; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .era-header-left { font-size:11px; font-weight:700; color:rgba(255,255,255,0.5); }
+    .era-header-right { display:flex; gap:8px; align-items:center; }
+    .era-status { font-size:9.5px; font-weight:700; background:rgba(45,186,108,0.15); color:#4ade80; padding:2px 8px; border-radius:100px; display:flex; align-items:center; gap:4px; }
+    .era-status-dot { width:5px; height:5px; border-radius:50%; background:#4ade80; animation:pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+    .era-body { padding:14px; }
+    .era-summary-row { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:12px; }
+    .era-summary-tile { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:8px 10px; text-align:center; }
+    .era-tile-val { font-family:var(--font-display); font-size:1rem; font-weight:700; color:rgba(255,255,255,0.9); }
+    .era-tile-lbl { font-size:8.5px; text-transform:uppercase; letter-spacing:0.07em; color:rgba(255,255,255,0.3); margin-top:2px; }
+    .era-table-header { display:grid; grid-template-columns:1fr 52px 52px 56px; gap:6px; padding:5px 10px; font-size:8.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.25); border-bottom:1px solid rgba(255,255,255,0.05); }
+    .era-row { display:grid; grid-template-columns:1fr 52px 52px 56px; gap:6px; padding:7px 10px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:10px; align-items:center; }
+    .era-row:last-child { border-bottom:none; }
+    .era-row-name { color:rgba(255,255,255,0.7); font-weight:600; }
+    .era-row-code { font-family:monospace; font-size:9.5px; color:rgba(255,255,255,0.35); }
+    .era-row-amt { font-family:var(--font-display); font-size:11px; font-weight:700; color:rgba(255,255,255,0.8); }
+    .era-row-status { font-size:8.5px; font-weight:700; padding:2px 6px; border-radius:100px; text-align:center; }
+    .era-row-status.posted { background:rgba(45,186,108,0.15); color:#4ade80; }
+    .era-row-status.adj { background:rgba(245,158,11,0.15); color:#fbbf24; }
+    .era-row-status.denied { background:rgba(239,68,68,0.15); color:#f87171; }
+    .era-footer { display:flex; align-items:center; justify-content:space-between; padding:8px 14px; background:rgba(26,107,170,0.08); border-top:1px solid rgba(26,107,170,0.15); }
+    .era-footer-text { font-size:9.5px; color:rgba(255,255,255,0.35); }
+    .era-footer-action { font-size:9.5px; font-weight:700; color:var(--c-accent); cursor:pointer; }
+
+    /* ── Payer integration logos ── */
+    .payer-section { background:var(--c-light); }
+    .payer-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:var(--space-3); }
+    .payer-card { background:white; border:1px solid var(--c-border); border-radius:12px; padding:var(--space-4); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--c-muted); text-align:center; min-height:58px; transition:box-shadow 0.2s,border-color 0.2s,color 0.2s; cursor:default; }
+    .payer-card:hover { box-shadow:0 4px 16px rgba(26,107,170,0.09); border-color:rgba(26,107,170,0.2); color:var(--c-primary); }
+
+    /* ── Denial Management callout ── */
+    .denial-section { background:white; }
+    .denial-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16); align-items:center; }
+    .denial-feature-list { display:flex; flex-direction:column; gap:var(--space-4); }
+    .denial-feature { display:flex; gap:var(--space-4); align-items:flex-start; padding:var(--space-5); border-radius:14px; border:1px solid var(--c-border); transition:box-shadow 0.2s,border-color 0.2s; }
+    .denial-feature:hover { box-shadow:0 6px 20px rgba(26,107,170,0.08); border-color:rgba(26,107,170,0.2); }
+    .denial-icon { width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .denial-icon svg { width:18px; height:18px; }
+    .denial-text h5 { font-size:0.95rem; font-weight:700; color:var(--c-dark); margin-bottom:var(--space-1); }
+    .denial-text p { font-size:0.85rem; color:var(--c-slate); line-height:1.6; }
+
+    /* Denial rate visual */
+    .denial-visual { position:relative; }
+    .denial-donut-wrap { display:flex; flex-direction:column; gap:var(--space-4); align-items:center; }
+    .denial-donut-chart { position:relative; width:220px; height:220px; }
+    .denial-donut-chart svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .denial-donut-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .denial-donut-pct { font-family:var(--font-display); font-size:2.5rem; font-weight:700; color:var(--c-dark); line-height:1; }
+    .denial-donut-sub { font-size:0.78rem; color:var(--c-muted); margin-top:4px; text-align:center; }
+    .denial-legend { display:flex; flex-direction:column; gap:var(--space-3); width:100%; max-width:240px; }
+    .denial-legend-item { display:flex; align-items:center; justify-content:space-between; font-size:0.85rem; }
+    .denial-legend-label { display:flex; align-items:center; gap:var(--space-2); color:var(--c-slate); }
+    .denial-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .denial-legend-val { font-weight:700; color:var(--c-dark); }
+
+    /* ── Testimonials + CTA ── */
+    .testimonial-mini-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5); }
+    .testimonial-mini { background:white; border:1px solid var(--c-border); border-radius:16px; padding:var(--space-7); }
+    .testimonial-mini-stars { display:flex; gap:3px; margin-bottom:var(--space-4); color:#f59e0b; }
+    .testimonial-mini-stars svg { width:14px; height:14px; }
+    .testimonial-mini-quote { font-size:0.9rem; color:var(--c-slate); line-height:1.65; margin-bottom:var(--space-5); }
+    .testimonial-mini-author { display:flex; align-items:center; gap:var(--space-3); }
+    .testimonial-mini-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:white; }
+    .testimonial-mini-name { font-size:0.88rem; font-weight:700; color:var(--c-dark); }
+    .testimonial-mini-role { font-size:0.78rem; color:var(--c-muted); }
+    .page-cta { background:linear-gradient(135deg,#062d50 0%,#0d3d6b 50%,#125490 100%); position:relative; overflow:hidden; }
+    .page-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 80% at 80% 50%,rgba(26,107,170,0.2) 0%,transparent 60%); }
+    .page-cta-inner { position:relative; text-align:center; max-width:680px; margin:0 auto; }
+    .page-cta-inner .section-title { color:var(--c-white); }
+    .page-cta-inner .section-subtitle { color:rgba(255,255,255,0.65); }
+    .page-cta-actions { display:flex; gap:var(--space-3); justify-content:center; margin-top:var(--space-8); }
+    .btn-outline-white { display:inline-flex; align-items:center; gap:var(--space-2); height:48px; padding:0 var(--space-6); border:2px solid rgba(255,255,255,0.3); border-radius:var(--radius-full); font-weight:700; font-size:0.9rem; color:var(--c-white); transition:all 0.2s; }
+    .btn-outline-white:hover { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.5); }
+
+    /* ── Responsive ── */
+    @media (max-width:1024px) {
+      .page-hero-inner { grid-template-columns:1fr; }
+      .features-alt-grid { grid-template-columns:1fr 1fr; }
+      .revenue-stats-grid { grid-template-columns:1fr 1fr; }
+      .workflow-grid { grid-template-columns:1fr; }
+      .payer-grid { grid-template-columns:repeat(3,1fr); }
+      .denial-grid { grid-template-columns:1fr; }
+      .testimonial-mini-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:768px) {
+      .page-hero { padding:120px 0 70px; }
+      .features-alt-grid { grid-template-columns:1fr; }
+      .billing-summary { grid-template-columns:1fr 1fr; }
+      .page-hero-stats { flex-wrap:wrap; gap:var(--space-5); }
+      .payer-grid { grid-template-columns:repeat(2,1fr); }
+      .era-summary-row { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+
+  <!-- Mouse follow cursor -->
+  <div id="cv-cursor" aria-hidden="true"></div>
+  <!-- Page transition overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav nav-transparent" id="mainNav" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Cavient Home">
+        <img src="https://i.ibb.co.com/PZtbPWqY/Cavient.png" alt="Cavient" class="nav-logo-img" />
+      </a>
+
+      <!-- Menu -->
+      <ul class="nav-menu" role="list">
+
+        <!-- Platform dropdown -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="practice-management.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+              </span>
+              Practice Management
+            </a>
+            <a href="telehealth.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/><path d="M12 12v-2M12 16v2"/></svg>
+              </span>
+              Telehealth
+            </a>
+            <a href="ehr.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+              </span>
+              Electronic Health Records
+            </a>
+            <a href="billing.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+              </span>
+              Billing & Revenue
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="index.html#specialties" class="nav-link">Specialties</a></li>
+        <li class="nav-item"><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="blog.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </span>
+              Blog &amp; Articles
+            </a>
+            <a href="help.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              </span>
+              Help Center
+            </a>
+            <a href="customer-stories.html" role="menuitem">
+              <span class="dd-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              Customer Stories
+            </a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login" target="_blank" rel="noopener">Log In</a>
+        <button><a href="register.html" target="_blank" rel="noopener" class="btn btn-accent btn-lg magnetic">Get Started Free</a></button>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<section class="page-hero" aria-label="Billing hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-grid" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="animate-on-scroll">
+        <div class="page-hero-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+          Billing &amp; Revenue Cycle
+        </div>
+        <h1 class="page-hero-title text-reveal">
+          Get Paid Faster,<br>
+          Keep More Revenue
+        </h1>
+        <p class="page-hero-subtitle">End-to-end revenue cycle management built for healthcare. Automated claims submission, real-time eligibility verification, ERA/EOB posting, and intelligent denial management — from first encounter to final payment.</p>
+        <div class="page-hero-actions">
+          <a href="register.html" class="btn btn-primary btn-lg magnetic" target="_blank" rel="noopener">Start Free Trial</a>
+          <a href="#" class="btn btn-outline-light btn-lg">See It in Action</a>
+        </div>
+        <div class="page-hero-stats">
+          <div>
+            <div class="page-hero-stat-value">96%</div>
+            <div class="page-hero-stat-label">First-pass claims rate</div>
+          </div>
+          <div>
+            <div class="page-hero-stat-value">2×</div>
+            <div class="page-hero-stat-label">Faster reimbursement</div>
+          </div>
+          <div>
+            <div class="page-hero-stat-value">$0</div>
+            <div class="page-hero-stat-label">Setup or per-claim fees</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billing Dashboard Mockup -->
+      <div class="animate-on-scroll" style="animation-delay:0.15s;">
+        <div class="billing-mockup" aria-label="Billing dashboard preview" role="img">
+          <div class="billing-topbar">
+            <div class="billing-dots">
+              <span class="billing-dot r"></span>
+              <span class="billing-dot y"></span>
+              <span class="billing-dot g"></span>
+            </div>
+            <span class="billing-topbar-title">Revenue Cycle Dashboard</span>
+            <span class="billing-topbar-badge">Live</span>
+          </div>
+          <div class="billing-body">
+            <!-- Summary Stats -->
+            <div class="billing-summary">
+              <div class="billing-stat-card">
+                <div class="billing-stat-label">Billed This Month</div>
+                <div class="billing-stat-value">$84,320</div>
+                <div class="billing-stat-delta up">↑ 12% vs last month</div>
+              </div>
+              <div class="billing-stat-card">
+                <div class="billing-stat-label">Collected</div>
+                <div class="billing-stat-value">$76,188</div>
+                <div class="billing-stat-delta up">↑ 90.4% rate</div>
+              </div>
+              <div class="billing-stat-card">
+                <div class="billing-stat-label">Pending Claims</div>
+                <div class="billing-stat-value">$8,132</div>
+                <div class="billing-stat-delta neutral">14 claims in queue</div>
+              </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="billing-chart-wrap">
+              <div class="billing-chart-header">
+                <span class="billing-chart-title">Revenue Trend — Last 6 Months</span>
+                <div class="billing-chart-legend">
+                  <span class="billing-chart-legend-item"><span class="billing-chart-legend-dot" style="background:#1a6baa;"></span>Billed</span>
+                  <span class="billing-chart-legend-item"><span class="billing-chart-legend-dot" style="background:#00b0c8;"></span>Collected</span>
+                </div>
+              </div>
+              <div class="billing-bars">
+                <div class="billing-bar-group">
+                  <div class="billing-bar billed" style="height:52px;"></div>
+                  <div class="billing-bar collected" style="height:47px;"></div>
+                </div>
+                <div class="billing-bar-group">
+                  <div class="billing-bar billed" style="height:60px;"></div>
+                  <div class="billing-bar collected" style="height:55px;"></div>
+                </div>
+                <div class="billing-bar-group">
+                  <div class="billing-bar billed" style="height:58px;"></div>
+                  <div class="billing-bar collected" style="height:53px;"></div>
+                </div>
+                <div class="billing-bar-group">
+                  <div class="billing-bar billed" style="height:64px;"></div>
+                  <div class="billing-bar collected" style="height:59px;"></div>
+                </div>
+                <div class="billing-bar-group">
+                  <div class="billing-bar billed" style="height:68px;"></div>
+                  <div class="billing-bar collected" style="height:62px;"></div>
+                </div>
+                <div class="billing-bar-group">
+                  <div class="billing-bar billed" style="height:72px;"></div>
+                  <div class="billing-bar collected" style="height:66px;"></div>
+                </div>
+              </div>
+              <div class="billing-bar-labels">
+                <span class="billing-bar-month">Nov</span>
+                <span class="billing-bar-month">Dec</span>
+                <span class="billing-bar-month">Jan</span>
+                <span class="billing-bar-month">Feb</span>
+                <span class="billing-bar-month">Mar</span>
+                <span class="billing-bar-month">Apr</span>
+              </div>
+            </div>
+
+            <!-- Claims Table -->
+            <div class="billing-claims-wrap">
+              <div class="billing-claims-header">
+                <span class="billing-claims-title">Recent Claims</span>
+                <span class="billing-claims-action">View All →</span>
+              </div>
+              <div class="billing-claim-row">
+                <div>
+                  <div class="billing-claim-patient">Sarah M.</div>
+                  <div class="billing-claim-code">99214 · BlueCross</div>
+                </div>
+                <div class="billing-claim-amt">$248</div>
+                <div></div>
+                <span class="claim-pill paid">Paid</span>
+              </div>
+              <div class="billing-claim-row">
+                <div>
+                  <div class="billing-claim-patient">David K.</div>
+                  <div class="billing-claim-code">90837 · Aetna</div>
+                </div>
+                <div class="billing-claim-amt">$175</div>
+                <div></div>
+                <span class="claim-pill submitted">Submitted</span>
+              </div>
+              <div class="billing-claim-row">
+                <div>
+                  <div class="billing-claim-patient">Maria L.</div>
+                  <div class="billing-claim-code">99203 · UHC</div>
+                </div>
+                <div class="billing-claim-amt">$192</div>
+                <div></div>
+                <span class="claim-pill pending">Pending</span>
+              </div>
+              <div class="billing-claim-row">
+                <div>
+                  <div class="billing-claim-patient">James R.</div>
+                  <div class="billing-claim-code">90834 · Cigna</div>
+                </div>
+                <div class="billing-claim-amt">$140</div>
+                <div></div>
+                <span class="claim-pill denied">Denied</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FEATURES GRID ══ -->
+<section class="section" aria-labelledby="features-heading">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-label fade-up">Core Capabilities</div>
+      <h2 class="section-title fade-up" id="features-heading">Everything Revenue Cycle, <span class="text-accent">Nothing Extra</span></h2>
+      <p class="section-subtitle fade-up">A complete billing suite that works with your clinical workflow — not against it. From eligibility to payment, every step is automated, audited, and optimized.</p>
+    </div>
+    <div class="features-alt-grid">
+
+      <!-- Card 1 -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll">
+        <div class="feature-alt-icon" style="background:rgba(26,107,170,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round">
+            <path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/>
+          </svg>
+        </div>
+        <h3>Automated Claims Submission</h3>
+        <p>Submit clean claims to 900+ payers in seconds. Real-time scrubbing catches errors before submission, achieving a 96%+ first-pass acceptance rate across all specialties.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="animation-delay:0.05s;">
+        <div class="feature-alt-icon" style="background:rgba(0,176,200,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2" stroke-linecap="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Real-Time Eligibility Verification</h3>
+        <p>Instantly verify patient insurance coverage, copays, deductibles, and benefit limits before the appointment. Eliminate surprise claim rejections and reduce patient balance issues.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="animation-delay:0.1s;">
+        <div class="feature-alt-icon" style="background:rgba(45,186,108,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2" stroke-linecap="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h3>Revenue Analytics &amp; Reporting</h3>
+        <p>Real-time dashboards track collection rates, aging buckets, denial trends, and payer performance. Drill down by provider, location, service type, or payer with one click.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="animation-delay:0.15s;">
+        <div class="feature-alt-icon" style="background:rgba(245,158,11,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round">
+            <rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>
+          </svg>
+        </div>
+        <h3>ERA &amp; EOB Auto-Posting</h3>
+        <p>Electronic Remittance Advice and Explanation of Benefits are matched and posted automatically. Reduce manual posting time by 80% and reconcile payments in minutes, not days.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="animation-delay:0.2s;">
+        <div class="feature-alt-icon" style="background:rgba(239,68,68,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <h3>Denial Management &amp; Appeals</h3>
+        <p>Intelligent denial tracking categorizes root causes and generates appeal letters automatically. Follow up on denied claims before the timely filing deadline with built-in workflows.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="feature-alt-card blur-reveal animate-on-scroll" style="animation-delay:0.25s;">
+        <div class="feature-alt-icon" style="background:rgba(26,107,170,0.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Patient Billing &amp; Statements</h3>
+        <p>Send branded, mobile-friendly statements via email or text. Accept online payments, payment plans, and card-on-file. Reduce days-in-AR with automated patient payment reminders.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ REVENUE STATS BAND ══ -->
+<section class="revenue-stats-band section" aria-label="Revenue performance statistics">
+  <div class="container">
+    <div class="revenue-stats-grid">
+      <div class="animate-on-scroll" style="animation-delay:0s;">
+        <div class="revenue-stat-value">96%</div>
+        <div class="revenue-stat-label">First-pass claims<br>acceptance rate</div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.08s;">
+        <div class="revenue-stat-value">14 days</div>
+        <div class="revenue-stat-label">Average days<br>to payment</div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.16s;">
+        <div class="revenue-stat-value">$2.1M</div>
+        <div class="revenue-stat-label">Additional revenue<br>recovered per practice</div>
+      </div>
+      <div class="animate-on-scroll" style="animation-delay:0.24s;">
+        <div class="revenue-stat-value">900+</div>
+        <div class="revenue-stat-label">Payers connected<br>nationwide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WORKFLOW — ERA/EOB SECTION ══ -->
+<section class="workflow-section section" aria-label="Billing workflow">
+  <div class="container">
+    <div class="workflow-grid">
+      <!-- Steps -->
+      <div class="animate-on-scroll">
+        <div class="section-label fade-up" style="color:var(--c-accent);">How It Works</div>
+        <h2 class="section-title fade-up" style="color:white; margin-bottom:var(--space-4);">Revenue Cycle on <span style="color:var(--c-accent);">Autopilot</span></h2>
+        <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; line-height:1.7; margin-bottom:var(--space-10); max-width:460px;">From eligibility check at scheduling to final payment posting — Cavient automates every step of your revenue cycle so your staff can focus on patients, not paperwork.</p>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-step-content">
+              <h4>Verify Before the Appointment</h4>
+              <p>Eligibility and benefits are verified automatically at booking. Staff see coverage details, copays, and deductible status before the patient walks in.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-step-content">
+              <h4>Scrub &amp; Submit Claims Instantly</h4>
+              <p>Claims are auto-generated from the EHR, scrubbed against 3,000+ payer-specific edits, and submitted electronically in real time — typically within minutes of visit completion.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-step-content">
+              <h4>Post Payments Automatically</h4>
+              <p>ERA files are downloaded and matched automatically. Payments, adjustments, and patient balances are posted without manual data entry.</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-step-content">
+              <h4>Resolve Denials with One Click</h4>
+              <p>Denied claims are flagged, categorized by root cause, and routed to the right workflow. Appeal letters are generated automatically using denial-specific templates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERA Mockup -->
+      <div class="animate-on-scroll" style="animation-delay:0.15s;">
+        <div class="era-mockup" aria-label="ERA auto-posting preview" role="img">
+          <div class="era-header">
+            <span class="era-header-left">ERA Auto-Posting — Batch #4821</span>
+            <div class="era-header-right">
+              <span class="era-status">
+                <span class="era-status-dot"></span>
+                Processing
+              </span>
+            </div>
+          </div>
+          <div class="era-body">
+            <div class="era-summary-row">
+              <div class="era-summary-tile">
+                <div class="era-tile-val">$18,420</div>
+                <div class="era-tile-lbl">Total Billed</div>
+              </div>
+              <div class="era-summary-tile">
+                <div class="era-tile-val">$15,734</div>
+                <div class="era-tile-lbl">Allowed</div>
+              </div>
+              <div class="era-summary-tile">
+                <div class="era-tile-val">$14,210</div>
+                <div class="era-tile-lbl">Paid</div>
+              </div>
+              <div class="era-summary-tile">
+                <div class="era-tile-val">$1,524</div>
+                <div class="era-tile-lbl">Adjustments</div>
+              </div>
+            </div>
+            <div class="era-table-header">
+              <span>Patient / Code</span>
+              <span>Billed</span>
+              <span>Paid</span>
+              <span>Status</span>
+            </div>
+            <div class="era-row">
+              <div>
+                <div class="era-row-name">Angela T.</div>
+                <div class="era-row-code">90837 · Aetna</div>
+              </div>
+              <div class="era-row-amt">$175</div>
+              <div class="era-row-amt">$157</div>
+              <span class="era-row-status posted">Posted</span>
+            </div>
+            <div class="era-row">
+              <div>
+                <div class="era-row-name">Marcus D.</div>
+                <div class="era-row-code">99214 · BlueCross</div>
+              </div>
+              <div class="era-row-amt">$248</div>
+              <div class="era-row-amt">$210</div>
+              <span class="era-row-status posted">Posted</span>
+            </div>
+            <div class="era-row">
+              <div>
+                <div class="era-row-name">Priya N.</div>
+                <div class="era-row-code">90847 · UHC</div>
+              </div>
+              <div class="era-row-amt">$190</div>
+              <div class="era-row-amt">$162</div>
+              <span class="era-row-status adj">Adj CO-45</span>
+            </div>
+            <div class="era-row">
+              <div>
+                <div class="era-row-name">Carl W.</div>
+                <div class="era-row-code">99203 · Cigna</div>
+              </div>
+              <div class="era-row-amt">$145</div>
+              <div class="era-row-amt">$0</div>
+              <span class="era-row-status denied">Denied</span>
+            </div>
+            <div class="era-row">
+              <div>
+                <div class="era-row-name">Diane F.</div>
+                <div class="era-row-code">90834 · Medicare</div>
+              </div>
+              <div class="era-row-amt">$112</div>
+              <div class="era-row-amt">$97</div>
+              <span class="era-row-status posted">Posted</span>
+            </div>
+          </div>
+          <div class="era-footer">
+            <span class="era-footer-text">48 of 52 claims auto-posted · 4 need review</span>
+            <span class="era-footer-action">Review Exceptions →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ DENIAL MANAGEMENT ══ -->
+<section class="denial-section section" aria-label="Denial management">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-label fade-up">Denial Management</div>
+      <h2 class="section-title fade-up">Stop Leaving Money<br><span class="text-accent">on the Table</span></h2>
+      <p class="section-subtitle fade-up">The average practice loses 5–10% of revenue to unmanaged denials. Cavient's denial intelligence catches, categorizes, and resolves denied claims before they become write-offs.</p>
+    </div>
+    <div class="denial-grid">
+      <!-- Donut Chart -->
+      <div class="denial-visual animate-on-scroll">
+        <div class="denial-donut-wrap">
+          <div class="denial-donut-chart">
+            <svg viewBox="0 0 120 120">
+              <!-- Background ring -->
+              <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(26,107,170,0.08)" stroke-width="14"/>
+              <!-- First-pass paid: 76% = 289/380 of circumference -->
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#2dba6c" stroke-width="14" stroke-dasharray="220 289" stroke-dashoffset="0" stroke-linecap="round"/>
+              <!-- Appealed &amp; paid: 14% = 53/380 -->
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#1a6baa" stroke-width="14" stroke-dasharray="53 336" stroke-dashoffset="-220" stroke-linecap="round"/>
+              <!-- Outstanding: 6% = 23 -->
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#f59e0b" stroke-width="14" stroke-dasharray="23 357" stroke-dashoffset="-273" stroke-linecap="round"/>
+              <!-- Write-off: 4% = 15 -->
+              <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(239,68,68,0.6)" stroke-width="14" stroke-dasharray="15 365" stroke-dashoffset="-296" stroke-linecap="round"/>
+            </svg>
+            <div class="denial-donut-center">
+              <div class="denial-donut-pct">96%</div>
+              <div class="denial-donut-sub">Collection<br>Rate</div>
+            </div>
+          </div>
+          <div class="denial-legend">
+            <div class="denial-legend-item">
+              <span class="denial-legend-label"><span class="denial-legend-dot" style="background:#2dba6c;"></span>First-pass paid</span>
+              <span class="denial-legend-val">76%</span>
+            </div>
+            <div class="denial-legend-item">
+              <span class="denial-legend-label"><span class="denial-legend-dot" style="background:#1a6baa;"></span>Appealed &amp; collected</span>
+              <span class="denial-legend-val">20%</span>
+            </div>
+            <div class="denial-legend-item">
+              <span class="denial-legend-label"><span class="denial-legend-dot" style="background:#f59e0b;"></span>In follow-up</span>
+              <span class="denial-legend-val">3%</span>
+            </div>
+            <div class="denial-legend-item">
+              <span class="denial-legend-label"><span class="denial-legend-dot" style="background:rgba(239,68,68,0.6);"></span>Write-off</span>
+              <span class="denial-legend-val">1%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature List -->
+      <div class="animate-on-scroll" style="animation-delay:0.1s;">
+        <div class="denial-feature-list">
+          <div class="denial-feature">
+            <div class="denial-icon" style="background:rgba(239,68,68,0.08);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            </div>
+            <div class="denial-text">
+              <h5>Root-Cause Denial Analytics</h5>
+              <p>Categorize denials by reason code, payer, provider, and CPT code. Identify systemic issues before they multiply and set rules to prevent repeat denials.</p>
+            </div>
+          </div>
+          <div class="denial-feature">
+            <div class="denial-icon" style="background:rgba(26,107,170,0.08);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a6baa" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            </div>
+            <div class="denial-text">
+              <h5>Auto-Generated Appeal Letters</h5>
+              <p>Appeals are drafted automatically using denial-specific templates with the right clinical documentation, supporting records, and payer-required formatting attached.</p>
+            </div>
+          </div>
+          <div class="denial-feature">
+            <div class="denial-icon" style="background:rgba(0,176,200,0.08);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00b0c8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="denial-text">
+              <h5>Timely Filing Alerts</h5>
+              <p>Never miss a filing deadline. Automated alerts flag claims approaching timely filing limits so your team can act before revenue is permanently lost.</p>
+            </div>
+          </div>
+          <div class="denial-feature">
+            <div class="denial-icon" style="background:rgba(45,186,108,0.08);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2dba6c" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div class="denial-text">
+              <h5>Payer Contract Compliance</h5>
+              <p>Compare payments against contracted rates automatically. Identify underpayments, flag payer discrepancies, and generate underpayment disputes with one click.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PAYER NETWORK ══ -->
+<section class="payer-section section" aria-label="Payer network">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-label fade-up">Payer Network</div>
+      <h2 class="section-title fade-up">Connected to <span class="text-accent">900+ Payers</span></h2>
+      <p class="section-subtitle fade-up">Submit electronic claims to every major commercial insurer, government payer, and managed care organization. If they accept electronic claims, we're connected.</p>
+    </div>
+    <div class="payer-grid animate-on-scroll">
+      <div class="payer-card">BlueCross<br>BlueShield</div>
+      <div class="payer-card">United<br>Healthcare</div>
+      <div class="payer-card">Aetna</div>
+      <div class="payer-card">Cigna</div>
+      <div class="payer-card">Medicare</div>
+      <div class="payer-card">Medicaid</div>
+      <div class="payer-card">Humana</div>
+      <div class="payer-card">Anthem</div>
+      <div class="payer-card">Magellan<br>Health</div>
+      <div class="payer-card">Tricare</div>
+      <div class="payer-card">Molina<br>Healthcare</div>
+      <div class="payer-card">Centene</div>
+    </div>
+    <p class="animate-on-scroll" style="text-align:center; margin-top:var(--space-8); color:var(--c-muted); font-size:0.9rem;">Plus 880+ additional regional and specialty payers. <a href="#" style="color:var(--c-primary); font-weight:700;">View full payer list →</a></p>
+  </div>
+</section>
+
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="section" style="background:var(--c-light);" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-label fade-up">Customer Stories</div>
+      <h2 class="section-title fade-up" id="testimonials-heading">Practices That <span class="text-accent">Transformed Their Revenue</span></h2>
+    </div>
+    <div class="testimonial-mini-grid">
+
+      <div class="testimonial-mini animate-on-scroll">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">Our days in AR dropped from 52 to 18 in the first three months. The ERA auto-posting alone saves my billing staff five hours a week. I wish we had switched to Cavient two years earlier.</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#1a6baa,#00b0c8);">CW</div>
+          <div>
+            <div class="testimonial-mini-name">Christine Walsh, CPC</div>
+            <div class="testimonial-mini-role">Billing Director · Lakewood Family Medicine</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-mini animate-on-scroll" style="animation-delay:0.1s;">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">The denial management dashboard is a game-changer. We recovered $280,000 in previously written-off revenue in our first year. The root-cause analytics showed us patterns we had no idea were happening.</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#2dba6c,#1a6baa);">DT</div>
+          <div>
+            <div class="testimonial-mini-name">Dr. Kevin Tran, MD</div>
+            <div class="testimonial-mini-role">Medical Director · Apex Behavioral Health Group</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-mini animate-on-scroll" style="animation-delay:0.2s;">
+        <div class="testimonial-mini-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-mini-quote">Real-time eligibility verification cut our claim rejections by 70%. Patients know what they owe upfront, which has also improved our collection rate at the point of service dramatically.</p>
+        <div class="testimonial-mini-author">
+          <div class="testimonial-mini-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">SA</div>
+          <div>
+            <div class="testimonial-mini-name">Sandra Alvarez</div>
+            <div class="testimonial-mini-role">Practice Administrator · Sunrise Primary Care</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section class="page-cta section">
+  <div class="container">
+    <div class="page-cta-inner animate-on-scroll">
+      <div class="section-label fade-up" style="color:var(--c-accent); text-align:center; margin-bottom:var(--space-4);">Ready to Maximize Revenue?</div>
+      <h2 class="section-title fade-up">Start Collecting What<br>You've Already Earned</h2>
+      <p class="section-subtitle fade-up">Join thousands of providers who trust Cavient to run their billing operations. No setup fees, no per-claim charges — just clean claims and faster payments.</p>
+      <div class="page-cta-actions">
+        <a href="register.html" class="btn btn-primary btn-lg magnetic" target="_blank" rel="noopener">Start Free Trial</a>
+        <a href="register.html" class="btn-outline-white btn-lg">Talk to a Billing Expert</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="Cavient home">
+          <!-- <img src="https://i.ibb.co.com/s8JzNLp/Cavient.png"> -->
+          <img style="width: auto; height: 50px;" src="https://i.ibb.co.com/wHKjn31/Cavient-logo.png">
+        </a>
+        <p class="footer-brand-desc">
+          The all-in-one healthcare practice management platform. Empowering providers to deliver exceptional care while running a thriving practice.
+        </p>
+        <div class="footer-social" aria-label="Cavient social media">
+          <!-- Twitter/X -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.732-8.855L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="footer-social-link" aria-label="Follow Cavient on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div>
+        <h3 class="footer-col-title">Platform</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="practice-management.html" class="footer-link">Practice Management</a></li>
+          <li><a href="telehealth.html" class="footer-link">Telehealth</a></li>
+          <li><a href="ehr.html" class="footer-link">Electronic Health Records</a></li>
+          <li><a href="billing.html" class="footer-link">Billing &amp; Revenue</a></li>
+          <li><a href="#" class="footer-link">Patient Portal</a></li>
+          <li><a href="#" class="footer-link">Analytics &amp; Reporting</a></li>
+        </ul>
+      </div>
+
+      <!-- Specialties -->
+      <div>
+        <h3 class="footer-col-title">Specialties</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#" class="footer-link">Mental Health</a></li>
+          <li><a href="#" class="footer-link">Primary Care</a></li>
+          <li><a href="#" class="footer-link">Home Health</a></li>
+          <li><a href="#" class="footer-link">Specialty Care</a></li>
+          <li><a href="#" class="footer-link">Group Practices</a></li>
+          <li><a href="#" class="footer-link">Substance Use</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="footer-col-title">Resources</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="blog.html" class="footer-link">Blog</a></li>
+          <li><a href="help.html" class="footer-link">Help Center</a></li>
+          <li><a href="customer-stories.html" class="footer-link">Customer Stories</a></li>
+          <li><a href="blog.html#webinars" class="footer-link">Webinars</a></li>
+          <li><a href="#" class="footer-link">API Docs</a></li>
+          <li><a href="#" class="footer-link">Status Page</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="about.html" class="footer-link">About Cavient</a></li>
+          <li><a href="https://cavient.com/careers" class="footer-link" target="_blank">Careers</a></li>
+          <li><a href="about.html#press" class="footer-link">Press</a></li>
+          <li><a href="https://cavient.com/contact" class="footer-link" target="_blank">Contact Us</a></li>
+          <li><a href="#" class="footer-link">Partners</a></li>
+          <li><a href="#" class="footer-link">Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Cavient, Inc. All rights reserved. Dev By Joy</p>
+      <div class="footer-hipaa" aria-label="HIPAA compliance status">
+        <span class="hipaa-badge" aria-label="HIPAA Compliant">HIPAA</span>
+        Compliant · Secure · Trusted
+      </div>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">BAA</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>
